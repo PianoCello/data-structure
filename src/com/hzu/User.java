@@ -1,35 +1,21 @@
 package com.hzu;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author zhanghuihong
  * @since 2019-08-11
  */
 public class User {
 
-    private int id;
-    private String name;
+    public static void main(String[] args) {
 
-    public int getId() {
-        return id;
-    }
+        List<User> users = new ArrayList<>();
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public String getName() {
-        return name;
-    }
 
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+
     }
 }
