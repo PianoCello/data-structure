@@ -41,11 +41,40 @@ public class LeetCode_002_Add_Two_Numbers {
 
     }
 
-
     public static ListNode addTwoNumbers(ListNode left, ListNode right) {
+        /// 返回的对象
+        ListNode listNode = new ListNode(0);
+        //临时对象
+        ListNode temp = listNode;
+        //进位
+        int up = 0;
+        //两链表不能同时为空
+        while (left != null || right != null) {
+            int i = 0;
+            int j = 0;
+            //左边
+            if (left != null) {
+                i = left.val;
+                left = left.next;
+            }
+            //右边
+            if (right != null) {
+                j = right.val;
+                right = right.next;
+            }
+            int sum = i + j + up;
 
+            int num = sum % 10;
+            up = sum / 10;
 
-        return null;
+            temp.next = new ListNode(num);
+            temp = temp.next;
+        }
+        //最后可能存在的进位
+        if (up == 1) {
+            temp.next = new ListNode(up);
+        }
+        return listNode.next;
     }
 
 }
