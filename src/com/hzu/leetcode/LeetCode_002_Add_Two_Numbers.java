@@ -16,7 +16,7 @@ package com.hzu.leetcode;
  * @author zhanghuihong
  * @since 2019-11-22
  */
-public class LeetCode_002_add_two_numbers {
+public class LeetCode_002_Add_Two_Numbers {
 
     public static void main(String[] args) {
 

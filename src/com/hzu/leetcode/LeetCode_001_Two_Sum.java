@@ -17,7 +17,7 @@ import java.util.HashMap;
  * @author zhanghuihong
  * @since 2019-11-22
  */
-public class LeetCode_001_two_sum {
+public class LeetCode_001_Two_Sum {
 
     public static void main(String[] args) {
 
