@@ -24,7 +24,7 @@ import java.util.Set;
 public class LeetCode_003_Longest_SubString_Without_Repeating_Characters {
 
     public static void main(String[] args) {
-        String s = "asdasdasd";
+        String s = "abcacsefa";
 //        int length = lengthOfLongestSubstring(s);
         int length2 = lengthOfLongestSubstring2(s);
 
@@ -81,8 +81,11 @@ public class LeetCode_003_Longest_SubString_Without_Repeating_Characters {
         int lastIndex = 0;
         int maxLen = 1;
         int tempLen = 0;
+
+        //外层循环
         for (int i = 1; i < s.length(); i++) {
 
+            //
             for (int j = lastIndex; j < i; j++) {
                 if (chars[j] == chars[i]) {
                     lastIndex = j + 1;
@@ -96,6 +99,7 @@ public class LeetCode_003_Longest_SubString_Without_Repeating_Characters {
             }
 
         }
+
         return maxLen;
     }
 
