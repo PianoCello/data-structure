@@ -1,5 +1,8 @@
 package com.hzu.leetcode;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * 无重复字符的最长子串:
  * <p>
@@ -21,32 +24,79 @@ package com.hzu.leetcode;
 public class LeetCode_003_Longest_SubString_Without_Repeating_Characters {
 
     public static void main(String[] args) {
-        String  s = "asasas";
-        int length = lengthOfLongestSubstring(s);
+        String s = "asdasdasd";
+//        int length = lengthOfLongestSubstring(s);
+        int length2 = lengthOfLongestSubstring2(s);
 
-        System.out.println(length);
+//        System.out.println(length);
+        System.out.println(length2);
     }
 
+
+    // a b c s f s d z a b c a a s a
+
+    /**
+     * 滑动窗口法
+     */
     public static int lengthOfLongestSubstring(String s) {
+        if ("".equals(s)) {
+            return 0;
+        }
         //最长的长度
         int max = 1;
-        //每次的长度
-        int len = 1;
-
         char[] chars = s.toCharArray();
-        //基准点
-        int pivot = 0;
-        for (int i = 1; i < chars.length; i++) {
 
-            if (chars[pivot] != chars[i]) {
-                len++;
-            } else {
-                max = Math.max(max, len);
-                pivot++;
-                len = 1;
+        for (int i = 0; i < chars.length; i++) {
+
+            Set<Character> set = new HashSet<>();
+            set.add(chars[i]);
+
+            for (int j = i + 1; j < chars.length; j++) {
+
+                if (set.contains(chars[j])) {
+                    break;
+                }
+
+                set.add(chars[j]);
             }
+
+            max = Math.max(max, set.size());
         }
-        max = Math.max(max, len);
+
         return max;
     }
+
+    /**
+     * 优化的滑动窗口法
+     */
+    public static int lengthOfLongestSubstring2(String s) {
+        if (s == null) {
+            return 0;
+        }
+        if (s.length() <= 1) {
+            return s.length();
+        }
+
+        char[] chars = s.toCharArray();
+        int lastIndex = 0;
+        int maxLen = 1;
+        int tempLen = 0;
+        for (int i = 1; i < s.length(); i++) {
+
+            for (int j = lastIndex; j < i; j++) {
+                if (chars[j] == chars[i]) {
+                    lastIndex = j + 1;
+                    break;
+                }
+            }
+
+            tempLen = i - lastIndex + 1;
+            if (tempLen > maxLen) {
+                maxLen = tempLen;
+            }
+
+        }
+        return maxLen;
+    }
+
 }
