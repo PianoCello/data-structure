@@ -1,8 +1,8 @@
 package com.hzu.array;
 
 /** 数据结构之数组
- * @author zhanghuihong
- * @since 2019-08-09
+ * @author PianoCello
+ * @date 2019-08-09
  */
 public class TestArray {
 

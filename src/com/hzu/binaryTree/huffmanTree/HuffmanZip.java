@@ -6,8 +6,8 @@ import java.util.*;
 /**
  * 哈夫曼编码压缩与解码
  *
- * @author zhanghuihong
- * @since 2019-08-25
+ * @author PianoCello
+ * @date 2019-08-25
  */
 public class HuffmanZip {
 

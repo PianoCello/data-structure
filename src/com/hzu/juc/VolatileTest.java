@@ -1,8 +1,8 @@
 package com.hzu.juc;
 
 /**
- * @author zhanghuihong
- * @since 2019-11-15
+ * @author PianoCello
+ * @date 2019-11-15
  */
 public class VolatileTest {
 

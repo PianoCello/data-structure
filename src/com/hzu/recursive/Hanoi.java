@@ -3,8 +3,8 @@ package com.hzu.recursive;
 /**
  * 汉诺塔问题
  *
- * @author zhanghuihong
- * @since 2019-08-11
+ * @author PianoCello
+ * @date 2019-08-11
  */
 public class Hanoi {
 

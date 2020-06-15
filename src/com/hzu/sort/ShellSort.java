@@ -5,8 +5,8 @@ import java.util.Arrays;
 /**
  * 排序算法之希尔排序(直接插入排序的升级)
  *
- * @author zhanghuihong
- * @since 2019-08-12
+ * @author PianoCello
+ * @date 2019-08-12
  */
 public class ShellSort {
 

@@ -5,8 +5,8 @@ import java.util.Arrays;
 /**
  * 数据结构之队列
  *
- * @author zhanghuihong
- * @since 2019-08-10
+ * @author PianoCello
+ * @date 2019-08-10
  */
 public class Queue {
 

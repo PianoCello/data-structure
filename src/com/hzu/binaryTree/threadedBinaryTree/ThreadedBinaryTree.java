@@ -4,8 +4,8 @@ package com.hzu.binaryTree.threadedBinaryTree;
  * 数据结构之二叉树(链式存储结构实现)
  * 线索化二叉树
  *
- * @author zhanghuihong
- * @since 2019-08-14
+ * @author PianoCello
+ * @date 2019-08-14
  */
 public class ThreadedBinaryTree {
 

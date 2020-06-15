@@ -5,8 +5,8 @@ import java.util.Arrays;
 /**
  * 排序算法之堆排序
  *
- * @author zhanghuihong
- * @since 2019-08-21
+ * @author PianoCello
+ * @date 2019-08-21
  */
 public class HeapSort {
 

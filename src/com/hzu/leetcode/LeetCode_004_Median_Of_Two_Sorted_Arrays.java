@@ -8,8 +8,8 @@ package com.hzu.leetcode;
  *
  * 你可以假设 nums1 和 nums2 不会同时为空。
  *
- * @author zhanghuihong
- * @since 2019-12-08
+ * @author PianoCello
+ * @date 2019-12-08
  */
 public class LeetCode_004_Median_Of_Two_Sorted_Arrays {
 

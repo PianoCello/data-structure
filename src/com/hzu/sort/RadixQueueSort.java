@@ -7,8 +7,8 @@ import java.util.Arrays;
 /**
  * 排序算法之基数排序之队列实现(负数不可用)
  *
- * @author zhanghuihong
- * @since 2019-08-11
+ * @author PianoCello
+ * @date 2019-08-11
  */
 public class RadixQueueSort {
 

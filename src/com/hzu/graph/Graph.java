@@ -5,8 +5,8 @@ import com.hzu.stack.Stack;
 /**
  * 数据结构之图(无向图)
  *
- * @author zhanghuihong
- * @since 2019-09-01
+ * @author PianoCello
+ * @date 2019-09-01
  */
 public class Graph {
 

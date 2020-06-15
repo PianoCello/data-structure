@@ -3,8 +3,8 @@ package com.hzu.binaryTree;
 /**
  * 树的节点
  *
- * @author zhanghuihong
- * @since 2019-08-14
+ * @author PianoCello
+ * @date 2019-08-14
  */
 public class TreeNode {
 

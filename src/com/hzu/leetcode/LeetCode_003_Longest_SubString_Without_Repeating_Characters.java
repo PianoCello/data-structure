@@ -18,8 +18,8 @@ import java.util.Set;
  * 输出: 1
  * 解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。
  *
- * @author zhanghuihong
- * @since 2019-11-22
+ * @author PianoCello
+ * @date 2019-11-22
  */
 public class LeetCode_003_Longest_SubString_Without_Repeating_Characters {
 

@@ -3,8 +3,8 @@ package com.hzu.binaryTree.avlTree;
 /**
  * 平衡二叉树
  *
- * @author zhanghuihong
- * @since 2019-08-29
+ * @author PianoCello
+ * @date 2019-08-29
  */
 public class Node {
 

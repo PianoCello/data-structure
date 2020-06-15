@@ -1,8 +1,8 @@
 package com.hzu.queue;
 
 /**
- * @author zhanghuihong
- * @since 2019-08-10
+ * @author PianoCello
+ * @date 2019-08-10
  */
 public class TestQueue {
 

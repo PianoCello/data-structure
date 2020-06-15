@@ -5,8 +5,8 @@ import java.util.Arrays;
 /**
  * 数据结构之数组
  * 用户传入下标的地方都要检查下标参数是否符合要求
- * @author zhanghuihong
- * @since 2019-08-09
+ * @author PianoCello
+ * @date 2019-08-09
  */
 public class Array {
 

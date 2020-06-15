@@ -5,8 +5,8 @@ import java.util.Arrays;
 /**
  * 排序算法之归并排序
  *
- * @author zhanghuihong
- * @since 2019-08-12
+ * @author PianoCello
+ * @date 2019-08-12
  */
 public class MergeSort {
 

@@ -3,8 +3,8 @@ package com.hzu.binaryTree;
 /**
  * 数据结构之二叉树(链式存储结构实现)
  *
- * @author zhanghuihong
- * @since 2019-08-14
+ * @author PianoCello
+ * @date 2019-08-14
  */
 public class BinaryTree {
 

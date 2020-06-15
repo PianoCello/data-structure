@@ -13,8 +13,8 @@ package com.hzu.leetcode;
  * 输出：7 -> 0 -> 8
  * 原因：342 + 465 = 807
  *
- * @author zhanghuihong
- * @since 2019-11-22
+ * @author PianoCello
+ * @date 2019-11-22
  */
 public class LeetCode_002_Add_Two_Numbers {
 

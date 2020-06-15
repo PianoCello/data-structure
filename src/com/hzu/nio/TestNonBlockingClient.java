@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 import java.util.Scanner;
 
 /**
- * @author zhanghuihong
- * @since 2019-09-21
+ * @author PianoCello
+ * @date 2019-09-21
  */
 public class TestNonBlockingClient {
 

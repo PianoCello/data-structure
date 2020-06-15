@@ -3,8 +3,8 @@ package com.hzu.binaryTree.binarySortTree;
 /**
  * 二叉排序树的节点,中序遍历后就是从小到大排好序的节点,(也是二叉搜索树)
  *
- * @author zhanghuihong
- * @since 2019-08-29
+ * @author PianoCello
+ * @date 2019-08-29
  */
 public class Node {
 

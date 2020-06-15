@@ -3,8 +3,8 @@ package com.hzu.graph;
 import java.util.Arrays;
 
 /** 测试图
- * @author zhanghuihong
- * @since 2019-09-01
+ * @author PianoCello
+ * @date 2019-09-01
  */
 public class TestGraph {
     public static void main(String[] args) {

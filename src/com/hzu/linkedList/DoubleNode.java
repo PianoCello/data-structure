@@ -3,8 +3,8 @@ package com.hzu.linkedList;
 /**
  * 数据结构之双链表(循环)
  *
- * @author zhanghuihong
- * @since 2019-08-11
+ * @author PianoCello
+ * @date 2019-08-11
  */
 public class DoubleNode {
 

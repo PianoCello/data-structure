@@ -3,8 +3,8 @@ package com.hzu.binaryTree.threadedBinaryTree;
 /**
  * 树的节点(线索化二叉树)
  *
- * @author zhanghuihong
- * @since 2019-08-14
+ * @author PianoCello
+ * @date 2019-08-14
  */
 public class ThreadedTreeNode {
 

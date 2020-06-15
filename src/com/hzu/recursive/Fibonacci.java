@@ -1,8 +1,8 @@
 package com.hzu.recursive;
 
 /** 斐波那契数列 Fibonacci Sequence
- * @author zhanghuihong
- * @since 2019-08-11
+ * @author PianoCello
+ * @date 2019-08-11
  */
 public class Fibonacci {
 

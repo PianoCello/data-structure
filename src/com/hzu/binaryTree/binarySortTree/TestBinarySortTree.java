@@ -1,8 +1,8 @@
 package com.hzu.binaryTree.binarySortTree;
 
 /**
- * @author zhanghuihong
- * @since 2019-08-29
+ * @author PianoCello
+ * @date 2019-08-29
  */
 public class TestBinarySortTree {
 

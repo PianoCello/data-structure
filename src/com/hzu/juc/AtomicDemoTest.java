@@ -6,8 +6,8 @@ import java.util.concurrent.locks.ReentrantLock;
 /**
  * 原子性测试
  *
- * @author zhanghuihong
- * @since 2019-11-15
+ * @author PianoCello
+ * @date 2019-11-15
  */
 public class AtomicDemoTest {
 

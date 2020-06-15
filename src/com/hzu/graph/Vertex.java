@@ -1,8 +1,8 @@
 package com.hzu.graph;
 
 /** 图的顶点
- * @author zhanghuihong
- * @since 2019-09-01
+ * @author PianoCello
+ * @date 2019-09-01
  */
 public class Vertex {
 

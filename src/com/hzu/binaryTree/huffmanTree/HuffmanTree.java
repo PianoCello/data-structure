@@ -5,8 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 /** 哈夫曼树 (最优二叉树)
- * @author zhanghuihong
- * @since 2019-08-24
+ * @author PianoCello
+ * @date 2019-08-24
  */
 public class HuffmanTree {
 

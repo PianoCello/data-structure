@@ -3,8 +3,8 @@ package com.hzu.juc;
 /**
  * 模拟 CAS 算法
  *
- * @author zhanghuihong
- * @since 2019-11-21
+ * @author PianoCello
+ * @date 2019-11-21
  */
 public class CompareAndSwapTest {
     public static void main(String[] args) {

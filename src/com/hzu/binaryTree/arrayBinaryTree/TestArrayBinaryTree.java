@@ -1,8 +1,8 @@
 package com.hzu.binaryTree.arrayBinaryTree;
 
 /**
- * @author zhanghuihong
- * @since 2019-08-14
+ * @author PianoCello
+ * @date 2019-08-14
  */
 public class TestArrayBinaryTree {
 

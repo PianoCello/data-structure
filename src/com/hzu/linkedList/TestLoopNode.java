@@ -1,8 +1,8 @@
 package com.hzu.linkedList;
 
 /**
- * @author zhanghuihong
- * @since 2019-08-11
+ * @author PianoCello
+ * @date 2019-08-11
  */
 public class TestLoopNode {
     public static void main(String[] args) {

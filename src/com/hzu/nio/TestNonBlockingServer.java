@@ -7,8 +7,8 @@ import java.nio.channels.*;
 import java.util.Iterator;
 
 /**
- * @author zhanghuihong
- * @since 2019-09-21
+ * @author PianoCello
+ * @date 2019-09-21
  */
 public class TestNonBlockingServer {
 

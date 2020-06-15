@@ -14,8 +14,8 @@ import java.util.HashMap;
  * 因为 nums[0] + nums[1] = 2 + 7 = 9
  * 所以返回 [0, 1]
  *
- * @author zhanghuihong
- * @since 2019-11-22
+ * @author PianoCello
+ * @date 2019-11-22
  */
 public class LeetCode_001_Two_Sum {
 

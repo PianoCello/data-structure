@@ -8,8 +8,8 @@ package com.hzu.binaryTree.arrayBinaryTree;
  * 第n个元素的左子节点: 2n+1
  * 第n个元素的右子节点: 2n+2
  *
- * @author zhanghuihong
- * @since 2019-08-14
+ * @author PianoCello
+ * @date 2019-08-14
  */
 public class ArrayBinaryTree {
 

@@ -1,8 +1,8 @@
 package com.hzu.binaryTree.huffmanTree;
 
 /** 哈夫曼树节点
- * @author zhanghuihong
- * @since 2019-08-24
+ * @author PianoCello
+ * @date 2019-08-24
  */
 public class Node implements Comparable<Node> {
 

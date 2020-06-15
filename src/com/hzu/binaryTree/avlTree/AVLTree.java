@@ -7,8 +7,8 @@ package com.hzu.binaryTree.avlTree;
  * 2.带有平衡条件：每个结点的左右子树的高度之差的绝对值（平衡因子）最多为1。
  *   也就是说，AVL树，本质上是带了平衡功能的二叉查找树（二叉排序树，二叉搜索树）。
  *
- * @author zhanghuihong
- * @since 2019-08-29
+ * @author PianoCello
+ * @date 2019-08-29
  */
 public class AVLTree {
 

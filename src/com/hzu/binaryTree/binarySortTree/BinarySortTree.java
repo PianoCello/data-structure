@@ -8,8 +8,8 @@ package com.hzu.binaryTree.binarySortTree;
  * （3）左、右子树也分别为二叉排序树；
  * （4）没有键值相等的节点。
  *
- * @author zhanghuihong
- * @since 2019-08-29
+ * @author PianoCello
+ * @date 2019-08-29
  */
 public class BinarySortTree {
 
