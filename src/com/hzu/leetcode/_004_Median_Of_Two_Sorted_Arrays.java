@@ -11,7 +11,7 @@ package com.hzu.leetcode;
  * @author PianoCello
  * @date 2019-12-08
  */
-public class LeetCode_004_Median_Of_Two_Sorted_Arrays {
+public class _004_Median_Of_Two_Sorted_Arrays {
 
     public double findMedianSortedArrays(int[] nums1, int[] nums2) {
 

@@ -33,8 +33,8 @@ public class TestBinaryTree {
         rightNode.setRightNode(new TreeNode(7));
 
         //二叉树的前序遍历
-        binaryTree.frontShow();
-        System.out.println("==============================");
+//        binaryTree.frontShow();
+//        System.out.println("==============================");
 
         //二叉树的中序遍历
 //        binaryTree.middleShow();
@@ -49,7 +49,8 @@ public class TestBinaryTree {
 //        System.out.println(result);
 
         //删除节点
-        binaryTree.remove(1);
+        binaryTree.remove(6);
+        binaryTree.remove(2);
 
         binaryTree.frontShow();
 

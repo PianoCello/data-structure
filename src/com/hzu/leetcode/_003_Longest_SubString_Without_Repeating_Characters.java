@@ -21,7 +21,7 @@ import java.util.Set;
  * @author PianoCello
  * @date 2019-11-22
  */
-public class LeetCode_003_Longest_SubString_Without_Repeating_Characters {
+public class _003_Longest_SubString_Without_Repeating_Characters {
 
     public static void main(String[] args) {
         String s = "abcacsefa";

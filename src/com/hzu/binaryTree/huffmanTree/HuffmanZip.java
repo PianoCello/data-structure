@@ -322,12 +322,6 @@ public class HuffmanZip {
         for (byte key : bytes) {
             //key对应的值为空
             map.merge(key, 1, (a, b) -> a + b);
-
-           /* if (counts == null) {
-                map.put(key, 1);
-            } else {
-                map.put(key, counts + 1);
-            }*/
         }
 
         //放入一个集合中

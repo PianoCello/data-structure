@@ -115,14 +115,14 @@ public class TreeNode {
         TreeNode parent = this;
 
         //删除的是左节点
-        if (parent.leftNode != null && parent.leftNode.value == i) {
-            parent.leftNode = null;
+        if (leftNode != null && leftNode.value == i) {
+            leftNode = null;
             return;
         }
 
         //删除的是右节点
-        if (parent.rightNode != null && parent.rightNode.value == i) {
-            parent.rightNode = null;
+        if (rightNode != null && rightNode.value == i) {
+            rightNode = null;
             return;
         }
 

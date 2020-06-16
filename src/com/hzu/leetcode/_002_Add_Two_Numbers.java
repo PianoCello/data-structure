@@ -16,7 +16,7 @@ package com.hzu.leetcode;
  * @author PianoCello
  * @date 2019-11-22
  */
-public class LeetCode_002_Add_Two_Numbers {
+public class _002_Add_Two_Numbers {
 
     public static void main(String[] args) {
 
@@ -77,25 +77,27 @@ public class LeetCode_002_Add_Two_Numbers {
         return listNode.next;
     }
 
+
+    /**
+     * Definition for singly-linked list.
+     */
+    static class ListNode {
+
+        int val;
+        ListNode next;
+
+        public ListNode(int val) {
+            this.val = val;
+        }
+
+        @Override
+        public String toString() {
+            return "ListNode{" +
+                    "val=" + val +
+                    ", next=" + next +
+                    '}';
+        }
+    }
 }
 
-/**
- * Definition for singly-linked list.
- */
-class ListNode {
 
-    int val;
-    ListNode next;
-
-    public ListNode(int val) {
-        this.val = val;
-    }
-
-    @Override
-    public String toString() {
-        return "ListNode{" +
-                "val=" + val +
-                ", next=" + next +
-                '}';
-    }
-}

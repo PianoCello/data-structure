@@ -14,8 +14,11 @@ public class TestNode {
         Node node3 = new Node(3);
         Node node4 = new Node(4);
         Node node5 = new Node(5);
+        Node node6 = new Node(5);
         node.append(node2).append(node3).append(node4).append(node5);
 
+
+        node.after(node6);
 
         System.out.println(node);
 
