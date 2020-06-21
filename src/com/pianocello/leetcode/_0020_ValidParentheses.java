@@ -14,7 +14,7 @@ import java.util.Stack;
  * @author PianoCello
  * @date 2020-06-17
  */
-public class _0020_Valid_Parentheses {
+public class _0020_ValidParentheses {
     public static boolean isValid(String s) {
         if (s == null || s.isEmpty()) {
             return true;
@@ -62,7 +62,7 @@ public class _0020_Valid_Parentheses {
 
     public static void main(String[] args) {
 
-        boolean valid = _0020_Valid_Parentheses.isValid("(((({}{}{}))))");
+        boolean valid = _0020_ValidParentheses.isValid("(((({}{}{}))))");
         System.out.println(valid);
 
     }

@@ -17,7 +17,7 @@ import java.util.HashMap;
  * @author PianoCello
  * @date 2019-11-22
  */
-public class _0001_Two_Sum {
+public class _0001_TwoSum {
 
     public static void main(String[] args) {
 

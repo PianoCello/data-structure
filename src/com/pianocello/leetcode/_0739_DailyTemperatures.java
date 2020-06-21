@@ -14,7 +14,7 @@ import java.util.Stack;
  * @date 2020-06-17
  */
 
-public class _0739_Daily_Temperatures {
+public class _0739_DailyTemperatures {
     /**
      * 根据题意，从最后一天推到第一天，这样会简单很多。因为最后一天显然不会再有升高的可能，结果直接为0。
      * 再看倒数第二天的温度，如果比倒数第一天低，那么答案显然为1，如果比倒数第一天高，又因为倒数第一天

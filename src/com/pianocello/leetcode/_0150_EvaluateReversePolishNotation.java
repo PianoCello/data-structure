@@ -27,7 +27,7 @@ import java.util.Stack;
  * @author PianoCello
  * @date 2020-06-18
  */
-public class _0150_Evaluate_Reverse_Polish_Notation {
+public class _0150_EvaluateReversePolishNotation {
 
     /**
      * 用栈实现

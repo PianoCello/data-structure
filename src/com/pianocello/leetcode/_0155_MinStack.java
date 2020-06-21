@@ -13,13 +13,13 @@ import java.util.Stack;
  * 解法一：链表实现
  * 最小栈 每一次压栈都会带有当前栈中的最小值
  */
-public class _0155_Min_Stack {
+public class _0155_MinStack {
     private Node head;
 
     /**
      * initialize your data structure here.
      */
-    public _0155_Min_Stack() {
+    public _0155_MinStack() {
 
     }
 
@@ -62,7 +62,7 @@ public class _0155_Min_Stack {
 }
 
 /**
- * 解法二：数组栈实现
+ * 解法二：数组实现
  */
 class MinStack {
 

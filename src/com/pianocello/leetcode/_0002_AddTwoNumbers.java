@@ -16,7 +16,7 @@ package com.pianocello.leetcode;
  * @author PianoCello
  * @date 2019-11-22
  */
-public class _0002_Add_Two_Numbers {
+public class _0002_AddTwoNumbers {
 
     public static void main(String[] args) {
 
