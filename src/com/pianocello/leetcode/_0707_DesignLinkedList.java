@@ -17,34 +17,313 @@ package com.pianocello.leetcode;
  * @author PianoCello
  * @date 2020-06-27
  */
-public class _0707_DesignLinkedList {
-    /** Initialize your data structure here. */
+//解法一： 自己写的单链表
+class MyLinkedList {
+
+    //链表的结点的个数
+    private int size = 0;
+    //链表的头结点
+    private Node head;
+
     public MyLinkedList() {
 
     }
 
-    /** Get the value of the index-th node in the linked list. If the index is invalid, return -1. */
     public int get(int index) {
-
+        if (index < 0 || index >= size) {
+            return -1;
+        }
+        Node cur = head;
+        for (int i = 0; i < index; ++i) {
+            cur = cur.next;
+        }
+        return cur.val;
     }
 
-    /** Add a node of value val before the first element of the linked list. After the insertion, the new node will be the first node of the linked list. */
     public void addAtHead(int val) {
-
+        addAtIndex(0, val);
     }
 
-    /** Append a node of value val to the last element of the linked list. */
     public void addAtTail(int val) {
-
+        addAtIndex(size, val);
     }
 
-    /** Add a node of value val before the index-th node in the linked list. If index equals to the length of linked list, the node will be appended to the end of linked list. If index is greater than the length, the node will not be inserted. */
     public void addAtIndex(int index, int val) {
-
+        //不做任何操作
+        if (index > size) {
+            return;
+        }
+        Node newNode = new Node(val);
+        if (head == null) {
+            head = newNode;
+        } else {
+            //相当于在头结点之前添加节点
+            if (index <= 0) {
+                newNode.next = head;
+                head = newNode;
+            } else {
+                //要临时存储要添加的位置的前后节点
+                Node cur = head;
+                Node pre = cur;
+                for (int i = 0; i < index; i++) {
+                    pre = cur;
+                    cur = cur.next;
+                }
+                pre.next = newNode;
+                newNode.next = cur;
+            }
+        }
+        size++;
     }
 
-    /** Delete the index-th node in the linked list, if the index is valid. */
     public void deleteAtIndex(int index) {
+        if (index < 0 || index >= size) {
+            return;
+        }
+        if (index == 0) {
+            head = head.next;
+        } else {
+            //要临时存储要删除的位置的前后节点
+            Node cur = head;
+            Node pre = cur;
+            for (int i = 0; i < index; i++) {
+                pre = cur;
+                cur = cur.next;
+            }
+            pre.next = cur.next;
+        }
+        size--;
+    }
 
+    @Override
+    public String toString() {
+        return "MyLinkedList{" +
+                "size=" + size +
+                ", head=" + head +
+                '}';
+    }
+
+    private class Node {
+        int val;
+        Node next;
+
+        public Node(int val) {
+            this.val = val;
+        }
+
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "val=" + val +
+                    ", next=" + next +
+                    '}';
+        }
+    }
+
+    public static void main(String[] args) {
+
+        MyLinkedList linkedList = new MyLinkedList();
+        linkedList.addAtHead(1);
+        linkedList.addAtTail(3);
+        linkedList.addAtIndex(1, 2);   //链表变为1-> 2-> 3
+        linkedList.get(1);            //返回2
+        linkedList.deleteAtIndex(0);  //现在链表是1-> 3
+        linkedList.get(1);            //返回3
+
+        System.out.println(linkedList);
+    }
+}
+
+
+/**
+ * 解法二：单链表 使用哨兵结点充当伪头
+ * 时间复杂度：
+ * addAtHead： O(1)
+ * addAtIndex，get，deleteAtIndex: O(k)，其中 k 指的是元素的索引。
+ * addAtTail：O(N)，其中 N 指的是链表的元素个数。
+ * 空间复杂度：所有的操作都是 O(1)。
+ *
+ */
+class MyLinkedList2 {
+
+    private class ListNode {
+        int val;
+        ListNode next;
+        ListNode(int x) { val = x; }
+    }
+
+    private int size;
+    // 哨兵结点做伪头
+    private ListNode head;
+
+    public MyLinkedList2() {
+        size = 0;
+        head = new ListNode(0);
+    }
+
+    public int get(int index) {
+        if (index < 0 || index >= size) return -1;
+
+        ListNode curr = head;
+        for(int i = 0; i < index + 1; ++i)
+            curr = curr.next;
+
+        return curr.val;
+    }
+
+    public void addAtHead(int val) {
+        addAtIndex(0, val);
+    }
+
+    public void addAtTail(int val) {
+        addAtIndex(size, val);
+    }
+
+    public void addAtIndex(int index, int val) {
+        if (index > size) return;
+
+        if (index < 0) index = 0;
+
+        ++size;
+        ListNode pred = head;
+        for(int i = 0; i < index; ++i)
+            pred = pred.next;
+
+        ListNode toAdd = new ListNode(val);
+        toAdd.next = pred.next;
+        pred.next = toAdd;
+    }
+
+    public void deleteAtIndex(int index) {
+        if (index < 0 || index >= size) return;
+
+        size--;
+        ListNode pred = head;
+        for(int i = 0; i < index; ++i)
+            pred = pred.next;
+
+        pred.next = pred.next.next;
+    }
+}
+
+
+/**
+ * 解法三：双链表 使用哨兵结点充当伪头和伪尾
+ * 时间复杂度：
+ * addAtHead，addAtTail： O(1)
+ * get，addAtIndex，delete：O(min(k,N−k))，其中 k 指的是元素的索引。
+ * 空间复杂度：所有的操作都是 O(1)。
+ *
+ */
+class MyLinkedList3 {
+
+    private class ListNode {
+        int val;
+        ListNode next;
+        ListNode prev;
+        ListNode(int x) { val = x; }
+    }
+
+    private int size;
+    // 使用哨兵结点充当伪头和伪尾
+    private ListNode head, tail;
+
+    public MyLinkedList3() {
+        size = 0;
+        head = new ListNode(0);
+        tail = new ListNode(0);
+        head.next = tail;
+        tail.prev = head;
+    }
+
+    public int get(int index) {
+        if (index < 0 || index >= size) return -1;
+
+        // choose the fastest way: to move from the head or to move from the tail
+        ListNode curr = head;
+        if (index + 1 < size - index)
+            for(int i = 0; i < index + 1; ++i)
+                curr = curr.next;
+        else {
+            curr = tail;
+            for(int i = 0; i < size - index; ++i)
+                curr = curr.prev;
+        }
+
+        return curr.val;
+    }
+
+    public void addAtHead(int val) {
+        ListNode pred = head, succ = head.next;
+
+        ++size;
+        ListNode toAdd = new ListNode(val);
+        //需要将四个引用重新连上
+        toAdd.prev = pred;
+        toAdd.next = succ;
+        pred.next = toAdd;
+        succ.prev = toAdd;
+    }
+
+    public void addAtTail(int val) {
+        ListNode succ = tail, pred = tail.prev;
+
+        ++size;
+        ListNode toAdd = new ListNode(val);
+        //需要将四个引用重新连上
+        toAdd.prev = pred;
+        toAdd.next = succ;
+        pred.next = toAdd;
+        succ.prev = toAdd;
+    }
+
+    public void addAtIndex(int index, int val) {
+        if (index > size) return;
+
+        if (index < 0) index = 0;
+
+        // find predecessor and successor of the node to be added
+        ListNode pred, succ;
+        if (index < size - index) {
+            pred = head;
+            for(int i = 0; i < index; ++i)
+                pred = pred.next;
+            succ = pred.next;
+        } else {
+            succ = tail;
+            for (int i = 0; i < size - index; ++i)
+                succ = succ.prev;
+            pred = succ.prev;
+        }
+
+        // insertion itself
+        ++size;
+        ListNode toAdd = new ListNode(val);
+        toAdd.prev = pred;
+        toAdd.next = succ;
+        pred.next = toAdd;
+        succ.prev = toAdd;
+    }
+
+    public void deleteAtIndex(int index) {
+        if (index < 0 || index >= size) return;
+
+        // find predecessor and successor of the node to be deleted
+        ListNode pred, succ;
+        if (index < size - index) {
+            pred = head;
+            for(int i = 0; i < index; ++i)
+                pred = pred.next;
+            succ = pred.next.next;
+        } else {
+            succ = tail;
+            for (int i = 0; i < size - index - 1; ++i)
+                succ = succ.prev;
+            pred = succ.prev.prev;
+        }
+
+        --size;
+        pred.next = succ;
+        succ.prev = pred;
     }
 }
