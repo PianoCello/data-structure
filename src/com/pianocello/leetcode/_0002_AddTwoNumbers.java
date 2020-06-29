@@ -18,29 +18,27 @@ package com.pianocello.leetcode;
  */
 public class _0002_AddTwoNumbers {
 
-    public static void main(String[] args) {
+    private static class ListNode {
 
-        // 342
-        ListNode listNode1 = new ListNode(3);
-        ListNode listNode2 = new ListNode(4);
-        ListNode listNode3 = new ListNode(2);
-        listNode2.next = listNode1;
-        listNode3.next = listNode2;
+        int val;
+        ListNode next;
 
-        // 465
-        ListNode listNode4 = new ListNode(4);
-        ListNode listNode5 = new ListNode(6);
-        ListNode listNode6 = new ListNode(5);
-        listNode5.next = listNode4;
-        listNode6.next = listNode5;
+        public ListNode(int val) {
+            this.val = val;
+        }
 
-        // 807
-        ListNode node = addTwoNumbers(listNode3, listNode6);
-        // 7 -> 0 -> 8
-        System.out.println(node);
-
+        @Override
+        public String toString() {
+            return "ListNode{" +
+                    "val=" + val +
+                    ", next=" + next +
+                    '}';
+        }
     }
 
+    /**
+     * 解法一：
+     */
     public static ListNode addTwoNumbers(ListNode left, ListNode right) {
         /// 返回的对象
         ListNode listNode = new ListNode(0);
@@ -77,27 +75,56 @@ public class _0002_AddTwoNumbers {
         return listNode.next;
     }
 
-
     /**
-     * Definition for singly-linked list.
+     * 解法二：LeetCode 题解
+     * <p>
+     * 时间复杂度：O(max(m,n))，假设 m 和 n 分别表示 left 和 right 的长度，上面的算法最多重复 max(m,n) 次。
+     * 空间复杂度：O(max(m,n))， 新列表的长度最多为 max(m,n) + 1
      */
-    static class ListNode {
+    public static ListNode addTwoNumbers2(ListNode left, ListNode right) {
+        ListNode dummyHead = new ListNode(0);
+        ListNode p = left, q = right, curr = dummyHead;
 
-        int val;
-        ListNode next;
-
-        public ListNode(int val) {
-            this.val = val;
+        int carry = 0;
+        while (p != null || q != null) {
+            int x = (p != null) ? p.val : 0;
+            int y = (q != null) ? q.val : 0;
+            int sum = carry + x + y;
+            carry = sum / 10;
+            curr.next = new ListNode(sum % 10);
+            curr = curr.next;
+            if (p != null) p = p.next;
+            if (q != null) q = q.next;
         }
-
-        @Override
-        public String toString() {
-            return "ListNode{" +
-                    "val=" + val +
-                    ", next=" + next +
-                    '}';
+        if (carry > 0) {
+            curr.next = new ListNode(carry);
         }
+        return dummyHead.next;
     }
+
+    public static void main(String[] args) {
+
+        // 342
+        ListNode listNode1 = new ListNode(2);
+        ListNode listNode2 = new ListNode(4);
+        ListNode listNode3 = new ListNode(3);
+        listNode1.next = listNode2;
+//        listNode2.next = listNode3;
+
+        // 465
+        ListNode listNode4 = new ListNode(5);
+        ListNode listNode5 = new ListNode(6);
+        ListNode listNode6 = new ListNode(4);
+        listNode4.next = listNode5;
+        listNode5.next = listNode6;
+
+        // 807
+        ListNode node = addTwoNumbers2(listNode1, listNode4);
+        // 7 -> 0 -> 8
+        System.out.println(node);
+
+    }
+
 }
 
 
