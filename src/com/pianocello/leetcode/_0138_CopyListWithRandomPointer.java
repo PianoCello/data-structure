@@ -65,4 +65,51 @@ public class _0138_CopyListWithRandomPointer {
         return map.get(sentinel);
     }
 
+    /**
+     * 解法二：LeetCode 题解
+     * 1. 遍历原来的链表并拷贝每一个节点，将拷贝节点放在原来节点的旁边
+     * 2. 迭代这个新旧节点交错的链表，并用旧节点的 random 指针去更新对应新节点的 random 指针
+     * 3. 将 next 指针正确赋值，以便将新的节点正确链接同时将旧节点重新正确链接。
+     * 时间复杂度：O(N)
+     * 空间复杂度：O(1)
+     */
+    public Node copyRandomList2(Node head) {
+        if (head == null) {
+            return null;
+        }
+
+        Node cur = head;
+        while (cur != null) {
+            //在每个原节点的后面创建新的节点
+            Node node = new Node(cur.val);
+            node.next = cur.next;
+            cur.next = node;
+            cur = cur.next.next;
+        }
+
+        cur = head;
+        while (cur != null) {
+            //将新节点的 random 指针指向正确的位置
+            cur.next.random = cur.random == null ? null : cur.random.next;
+            cur = cur.next.next;
+        }
+
+        cur = head;
+        Node newNode = head.next;
+        //返回的节点
+        Node res = newNode;
+        while (newNode.next != null) {
+            //将链表分割成两个单独的链表
+            cur.next = newNode.next;
+            newNode.next = newNode.next.next;
+
+            cur = cur.next;
+            newNode = newNode.next;
+        }
+        //最后将原链表的最后一点节点的 next 置空
+        cur.next = null;
+
+        return res;
+    }
+
 }
