@@ -14,11 +14,37 @@ package com.pianocello.leetcode;
  */
 public class _0557_ReverseWordsInAStringIII {
 
+    /**
+     * 解法一 ：使用双指针
+     */
     public static String reverseWords(String s) {
+        char[] chars = s.toCharArray();
+        int i = 0;
+        while (i < chars.length) {
+            if (Character.isSpaceChar(chars[i])) {
+                i++;
+            }
+            int j = i;
+            while (j < chars.length && !Character.isSpaceChar(chars[j])) {
+                j++;
+            }
+            reverseWords(chars, i, j - 1);
+            i = j + 1;
+        }
+        return new String(chars);
+    }
 
-
-
-        return null;
+    /**
+     * 反转从 start 到 end 的字符
+     */
+    private static void reverseWords(char[] chars, int start, int end) {
+        while (start < end) {
+            char temp = chars[start];
+            chars[start] = chars[end];
+            chars[end] = temp;
+            start++;
+            end--;
+        }
     }
 
     public static void main(String[] args) {
