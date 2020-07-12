@@ -73,19 +73,33 @@ public class _0202_HappyNumber {
 
     /**
      * 解法三：快慢指针法
-     * 不快乐的数一定会形成循环 快慢指针可以检测是否存在循环
+     * 不快乐的数一定会形成死循环 快慢指针可以检测是否存在循环
+     * 时间复杂度：O(logn)
+     * 空间复杂度：O(1)
      */
-    public boolean isHappy3(int n) {
+    public static boolean isHappy3(int n) {
+        int slow = n;
+        int fast = nextSum(n);
+        while (fast != 1 && fast != slow) {
+            slow = nextSum(slow);
+            fast = nextSum(nextSum(fast));
+        }
+        return fast == 1;
+    }
 
-
-
-
-        return true;
+    private static int nextSum(int n) {
+        int sum = 0;
+        while (n > 0) {
+            int d = n % 10;
+            sum += d * d;
+            n /= 10;
+        }
+        return sum;
     }
 
     public static void main(String[] args) {
 
-        System.out.println(isHappy(20));
+        System.out.println(isHappy(4156));
     }
 
 }

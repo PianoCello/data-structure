@@ -20,7 +20,7 @@ import java.util.TreeSet;
 public class _0220_ContainsDuplicateIII {
 
     /**
-     * 滑动窗口 + TreeSet
+     * 解法一：滑动窗口 + TreeSet
      * ceiling 是获取大于等于给定值的最小值
      * floor 是获取小于等于给定值的最大值
      */
@@ -47,8 +47,6 @@ public class _0220_ContainsDuplicateIII {
         int[] nums = {3, 6, 0, 4};
         boolean b = containsNearbyAlmostDuplicate(nums, 2, 2);
         System.out.println(b);
-
-
     }
 
 }

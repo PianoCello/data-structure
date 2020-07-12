@@ -39,16 +39,18 @@ public class _0350_IntersectionOfTwoArraysII {
             return intersect(nums2, nums1);
         }
         // key --> val(出现次数)
-        Map<Integer, Integer> m = new HashMap<>();
+        Map<Integer, Integer> m = new HashMap<>((int)(nums1.length/0.75));
         for (int n : nums1) {
             m.put(n, m.getOrDefault(n, 0) + 1);
         }
         int k = 0;
         for (int num : nums2) {
-            int cnt = m.getOrDefault(num, 0);
-            if (cnt > 0) {
+            int count = m.getOrDefault(num, 0);
+            if (count > 0) {
+                //使用原来的 nums 数组，降低空间复杂度
                 nums1[k++] = num;
-                m.put(num, cnt - 1);
+                //因为会存在重复元素需要再次加入
+                m.put(num, count - 1);
             }
         }
         return Arrays.copyOf(nums1, k);
