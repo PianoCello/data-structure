@@ -34,9 +34,10 @@ public class _0049_GroupAnagrams {
             List<String> list;
             if ((list = map.get(key)) == null) {
                 list = new ArrayList<>();
+                map.put(key, list);
             }
+            //不需要重新 put 已经存在的 list （引用传递）
             list.add(str);
-            map.put(key, list);
         }
         return new ArrayList<>(map.values());
     }
@@ -71,9 +72,10 @@ public class _0049_GroupAnagrams {
             List<String> list;
             if ((list = map.get(hashValue)) == null) {
                 list = new ArrayList<>();
+                map.put(hashValue, list);
             }
+            //不需要重新 put 已经存在的 list （引用传递）
             list.add(str);
-            map.put(hashValue, list);
         }
         return new ArrayList<>(map.values());
     }
