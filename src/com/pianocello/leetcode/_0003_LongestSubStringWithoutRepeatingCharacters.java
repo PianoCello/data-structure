@@ -5,7 +5,6 @@ import java.util.Set;
 
 /**
  * 无重复字符的最长子串:
- * <p>
  * 给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。
  * <p>
  * 示例 1:
@@ -23,84 +22,54 @@ import java.util.Set;
  */
 public class _0003_LongestSubStringWithoutRepeatingCharacters {
 
-    public static void main(String[] args) {
-        String s = "abcacsefa";
-//        int length = lengthOfLongestSubstring(s);
-        int length2 = lengthOfLongestSubstring2(s);
-
-//        System.out.println(length);
-        System.out.println(length2);
-    }
-
-
-    // a b c s f s d z a b c a a s a
-
     /**
-     * 滑动窗口法
+     * 解法一：从左往右逐一求解
      */
     public static int lengthOfLongestSubstring(String s) {
-        if ("".equals(s)) {
-            return 0;
-        }
-        //最长的长度
-        int max = 1;
+        Set<Character> set = new HashSet<>();
         char[] chars = s.toCharArray();
-
-        for (int i = 0; i < chars.length; i++) {
-
-            Set<Character> set = new HashSet<>();
-            set.add(chars[i]);
-
-            for (int j = i + 1; j < chars.length; j++) {
-
-                if (set.contains(chars[j])) {
-                    break;
-                }
-
-                set.add(chars[j]);
+        int len = chars.length;
+        int num = 0;
+        for (int i = 0; i < len; i++) {
+            int j = i;
+            while (j < len && !set.contains(chars[j])) {
+                set.add(chars[j++]);
             }
-
-            max = Math.max(max, set.size());
+            num = Math.max(num, set.size());
+            set.clear();
         }
-
-        return max;
+        return num;
     }
 
     /**
-     * 优化的滑动窗口法
+     * 解法二：双指针 滑动窗口
      */
     public static int lengthOfLongestSubstring2(String s) {
-        if (s == null) {
-            return 0;
-        }
-        if (s.length() <= 1) {
+        if (s.length() <= 1)
             return s.length();
-        }
 
+        int res = 1;
         char[] chars = s.toCharArray();
-        int lastIndex = 0;
-        int maxLen = 1;
-        int tempLen = 0;
-
-        //外层循环
-        for (int i = 1; i < s.length(); i++) {
-
-            //
-            for (int j = lastIndex; j < i; j++) {
+        int len = chars.length;
+        int last = 0;
+        //外层循环是右指针
+        for (int i = 1; i < len; i++) {
+            //内层循环是左指针 从上次相同的下一位开始
+            for (int j = last; j < i; j++) {
                 if (chars[j] == chars[i]) {
-                    lastIndex = j + 1;
+                    last = j + 1;
                     break;
                 }
             }
-
-            tempLen = i - lastIndex + 1;
-            if (tempLen > maxLen) {
-                maxLen = tempLen;
-            }
-
+            res = Math.max(res, i - last + 1);
         }
+        return res;
+    }
 
-        return maxLen;
+    public static void main(String[] args) {
+        String s = "abcabcbb";
+        int length = lengthOfLongestSubstring2(s);
+        System.out.println(length);
     }
 
 }
