@@ -63,7 +63,7 @@ public class _0454_4SumII {
     }
 
     /**
-     * 解法二：HashMap存两个数组之和，如 AB。然后计算两个数组之和，如 CD。时间复杂度为：O(n^2) + O(n^2),得到 O(n^2).
+     * 解法二：HashMap 存两个数组之和，如 AB。然后计算另外两个数组之和，如 CD。时间复杂度为：O(n^2) + O(n^2),得到 O(n^2).
      */
     public static int fourSumCount2(int[] A, int[] B, int[] C, int[] D) {
         Map<Integer, Integer> map = new HashMap<>((int) (A.length * A.length / 0.75));
