@@ -1,8 +1,6 @@
 package com.pianocello.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * 给定一个二叉树，返回它的中序 遍历。
@@ -33,11 +31,30 @@ public class _0094_BinaryTreeInorderTraversal {
         }
     }
 
+    /**
+     * 解法一：递归实现中序遍历
+     */
     public static List<Integer> inorderTraversal(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-        //存储节点的栈
-        Stack<TreeNode> stack = new Stack<>();
+        // 因为不需要查询，使用 LinkedList 更佳
+        List<Integer> list = new LinkedList<>();
+        inorderTraversal(root, list);
+        return list;
+    }
 
+    private static void inorderTraversal(TreeNode root, List<Integer> list) {
+        if (root == null) return;
+        inorderTraversal(root.left, list);
+        list.add(root.val);
+        inorderTraversal(root.right, list);
+    }
+
+    /**
+     * 解法二：使用 栈 迭代实现中序遍历
+     */
+    public static List<Integer> inorderTraversal2(TreeNode root) {
+        List<Integer> list = new LinkedList<>();
+        //存储节点的栈
+        Deque<TreeNode> stack = new LinkedList<>();
         TreeNode cur = root;
         while (cur != null || !stack.isEmpty()) {
             while (cur != null) {
@@ -47,6 +64,41 @@ public class _0094_BinaryTreeInorderTraversal {
             cur = stack.pop();
             list.add(cur.val);
             cur = cur.right;
+        }
+        return list;
+    }
+
+    /**
+     * 解法三：莫里斯 Morris 算法实现中序遍历
+     * 时间复杂度： O(N)。
+     * 空间复杂度： O(1)。
+     */
+    public static List<Integer> inorderTraversal3(TreeNode root) {
+        // 因为不需要查询，使用 LinkedList 更佳
+        List<Integer> list = new LinkedList<>();
+        TreeNode cur = root;
+        while (cur != null) {
+            if (cur.left == null) {
+                // 获取根节点的值
+                list.add(cur.val);
+                cur = cur.right;
+            } else {
+                // 查找前驱结点
+                TreeNode pred = cur.left;
+                while (pred.right != null && pred.right != cur) {
+                    pred = pred.right;
+                }
+                // 第一次到达左子树的最右端 将前驱结点的右节点赋值为当前结点
+                if (pred.right == null) {
+                    pred.right = cur;
+                    cur = cur.left;
+                } else {
+                    // 第二次到达左子树的最右端 还原树结构
+                    list.add(cur.val);
+                    pred.right = null;
+                    cur = cur.right;
+                }
+            }
         }
         return list;
     }
