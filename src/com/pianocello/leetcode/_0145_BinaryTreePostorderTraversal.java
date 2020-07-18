@@ -125,15 +125,16 @@ public class _0145_BinaryTreePostorderTraversal {
                 } else {
                     // 第二次到达左子树的最右端 还原树结构
                     pred.right = null;
-                    printNode(cur.left, list);
+                    addNode(cur.left, list);
                     cur = cur.right;
                 }
             }
         }
+        addNode(root,list);
         return list;
     }
 
-    private static void printNode(TreeNode node,List<Integer> list) {
+    private static void addNode(TreeNode node, List<Integer> list) {
         TreeNode tail = reverseNode(node);
         TreeNode cur = tail;
         while (cur != null) {
@@ -156,56 +157,6 @@ public class _0145_BinaryTreePostorderTraversal {
         return pre;
     }
 
-
-    //后序 Morris
-    public static void postOrderMorris(TreeNode head) {
-        if (head == null) {
-            return;
-        }
-        TreeNode cur1 = head;//遍历树的指针变量
-        TreeNode cur2 = null;//当前子树的最右节点
-        while (cur1 != null) {
-            cur2 = cur1.left;
-            if (cur2 != null) {
-                while (cur2.right != null && cur2.right != cur1) {
-                    cur2 = cur2.right;
-                }
-                if (cur2.right == null) {
-                    cur2.right = cur1;
-                    cur1 = cur1.left;
-                    continue;
-                } else {
-                    cur2.right = null;
-                    postMorrisPrint(cur1.left);
-                }
-            }
-            cur1 = cur1.right;
-        }
-        postMorrisPrint(head);
-    }
-    //打印函数
-    private static void postMorrisPrint(TreeNode head) {
-        TreeNode reverseList = postMorrisReverseList(head);
-        TreeNode cur = reverseList;
-        while (cur != null) {
-            System.out.print(cur.val + " ");
-            cur = cur.right;
-        }
-        postMorrisReverseList(reverseList);
-    }
-    //翻转单链表
-    private static TreeNode postMorrisReverseList(TreeNode head) {
-        TreeNode cur = head;
-        TreeNode pre = null;
-        while (cur != null) {
-            TreeNode next = cur.right;
-            cur.right = pre;
-            pre = cur;
-            cur = next;
-        }
-        return pre;
-    }
-
     public static void main(String[] args) {
 
         TreeNode root = new TreeNode(1);
@@ -224,10 +175,7 @@ public class _0145_BinaryTreePostorderTraversal {
         node3.left = node6;
         node3.right = node7;
 
-//        List<Integer> list = postorderTraversal2(root);
-
-        postOrderMorris(root);
-//        System.out.println(list);
-
+        List<Integer> list = postorderTraversal3(root);
+        System.out.println(list);
     }
 }
