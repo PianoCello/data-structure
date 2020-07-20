@@ -43,9 +43,16 @@ public class _0105_ConstructBinaryTreeFromPreorderAndInorderTraversal {
         }
     }
 
+    // 存储中序遍历的值和索引
     private static Map<Integer, Integer> map = new HashMap<>();
+    // 根节点在前序中的索引
     private static int rootIndex;
 
+    /**
+     * 以中序遍历的值作为构建二叉树的基础
+     * 前序遍历的第一个值是整棵树的根节点 在中序遍历中找出这个节点 这个节点左边的为左子树 右边的值为右子树
+     * 递归遍历中序左边和右边的值构建二叉树即可
+     */
     public static TreeNode buildTree(int[] preorder, int[] inorder) {
         rootIndex = 0;
         for (int i = 0; i < inorder.length; i++) {
@@ -60,8 +67,8 @@ public class _0105_ConstructBinaryTreeFromPreorderAndInorderTraversal {
         Integer index = map.get(rootVal);
 
         TreeNode root = new TreeNode(rootVal);
-        rootIndex++;
-        root.left = buildTree(inLeft, index-1, preorder);
+        rootIndex++;// 递归过程中的树的根节点刚好是前序遍历顺序的节点
+        root.left = buildTree(inLeft, index - 1, preorder);
         root.right = buildTree(index + 1, inRight, preorder);
         return root;
     }

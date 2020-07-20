@@ -43,27 +43,26 @@ public class _0106_ConstructBinaryTreeFromInorderAndPostorderTraversal {
         }
     }
 
+    // 存储中序遍历的值和索引
+    private static Map<Integer, Integer> map = new HashMap<>();
     // 根节点在后序中的索引
     private static int postRoot;
-    private static int[] postorder;
-    private static Map<Integer, Integer> map = new HashMap<>();
 
-    public static TreeNode buildTree(int[] inorder, int[] postOrder) {
-        postorder = postOrder;
+    public static TreeNode buildTree(int[] inorder, int[] postorder) {
         postRoot = postorder.length - 1;
         // HashMap 存储中序遍历的值和索引
         for (int i = 0; i < inorder.length; i++) {
             map.put(inorder[i], i);
         }
-        return helper(0, inorder.length - 1);
+        return helper(0, inorder.length - 1, postorder);
     }
 
     /**
-     * @param inLeft 中序的左边界
+     * @param inLeft  中序的左边界
      * @param inRight 中序的右边界
      * @return 子树根节点
      */
-    private static TreeNode helper(int inLeft, int inRight) {
+    private static TreeNode helper(int inLeft, int inRight, int[] postorder) {
         if (inLeft > inRight) return null;
         // 找出根节点
         int rootVal = postorder[postRoot];
@@ -72,8 +71,8 @@ public class _0106_ConstructBinaryTreeFromInorderAndPostorderTraversal {
         int index = map.get(rootVal);
 
         postRoot--;
-        root.right = helper(index + 1, inRight);
-        root.left = helper(inLeft, index - 1);
+        root.right = helper(index + 1, inRight, postorder);
+        root.left = helper(inLeft, index - 1, postorder);
         return root;
     }
 
