@@ -34,80 +34,6 @@ public class _0450_DeleteNodeInABST {
         }
     }
 
-
-    public TreeNode deleteNode2(TreeNode root, int key) {
-        TreeNode parent = root, p = root;
-        while (p != null && p.val != key) {
-            parent = p;
-            if (p.val > key) {
-                p = p.left;
-            } else {
-                p = p.right;
-            }
-        }
-        // 找不到匹配的 key
-        if (p == null) {
-            return root;
-        }
-        // 要删除的节点为叶子节点
-        if (p.left == null && p.right == null) {
-            // 要删除的节点为根节点
-            if (p == parent) {
-                return null;
-            }
-            if (parent.left == p) {
-                parent.left = null;
-            } else {
-                parent.right = null;
-            }
-            return root;
-        }
-        // 要删除的节点有一个子节点
-        if (p.left == null) {
-            if (parent == p) {
-                return p.right;
-            }
-            if (parent.left == p) {
-                parent.left = p.right;
-            } else {
-                parent.right = p.right;
-            }
-            return root;
-        } else if (p.right == null) {
-            if (parent == p) {
-                return p.left;
-            }
-            if (parent.left == p) {
-                parent.left = p.left;
-            } else {
-                parent.right = p.left;
-            }
-            return root;
-        }
-        // 要删除的节点有两个子节点 找中序遍历的前驱节点
-        TreeNode pre = p.left, left = p.left, right = p.right;
-        TreeNode parentPre = p;
-        while (pre.right != null) {
-            parentPre = pre;
-            pre = pre.right;
-        }
-        // 断开前驱节点
-        parentPre.right = null;
-        pre.right = right;
-        // 如果前驱节点不是当前节点的左节点
-        if (pre != left) {
-            pre.left = left;
-        }
-        if (parent == p) {
-            root = pre;
-        } else if (parent.left == p) {
-            parent.left = pre;
-        } else {
-            parent.right = pre;
-        }
-        return root;
-    }
-
     /**
      * 解法一：递归
      * 1. 如果目标节点没有子节点，我们可以直接移除该目标节点。
@@ -125,9 +51,11 @@ public class _0450_DeleteNodeInABST {
             if (root.left == null && root.right == null) {
                 root = null;
             } else if (root.right != null) {
+                //使用后继节点替换当前节点再删除后继节点
                 root.val = successor(root);
                 root.right = deleteNode(root.right, root.val);
             } else {
+                //使用前驱节点替换当前节点再删除前驱节点
                 root.val = predecessor(root);
                 root.left = deleteNode(root.left, root.val);
             }
