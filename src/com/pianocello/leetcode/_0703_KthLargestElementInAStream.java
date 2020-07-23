@@ -63,22 +63,23 @@ class KthLargest {
         }
     }
 
+    /**
+     * 查找第 k 大的数
+     * @param node 从哪个节点开始找
+     * @param k
+     */
     private TreeNode search(TreeNode node, int k) {
-        if (node == null) {
-            return null;
-        }
-        int leftNodeCount = node.left != null ? node.left.count : 0;
-        int rightNodeCount = node.right != null ? node.right.count : 0;
-        int currNodeCount = node.count - leftNodeCount - rightNodeCount;
+        if (node == null) return null;
 
-        if (k > currNodeCount + rightNodeCount) {
+        int rightCount = node.right != null ? node.right.count : 0;
+        if (k > rightCount + 1) {
             // k > 当前结点数加右子树的结点数，则搜索左子树
-            return search(node.left, k - currNodeCount - rightNodeCount);
-        } else if (k <= rightNodeCount) {
+            return search(node.left, k - rightCount - 1);
+        } else if (k <= rightCount) {
             // k <= 右子树的结点数，则搜索右子树
             return search(node.right, k);
         } else {
-            // k == 当前结点数加右子树的结点数，则找到第k大的结点
+            // k == 当前结点数加右子树的结点数，则找到第 k 大的结点
             return node;
         }
     }
