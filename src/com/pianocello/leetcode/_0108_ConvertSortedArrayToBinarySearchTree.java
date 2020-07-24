@@ -30,18 +30,22 @@ public class _0108_ConvertSortedArrayToBinarySearchTree {
     }
 
     /**
-     * 解法一：
+     * 解法一：递归 + 二分法
      */
     public TreeNode sortedArrayToBST(int[] nums) {
         if (nums == null || nums.length == 0) return null;
-        // [4,2,6,1,3,5,7]
-        // [1,2,3,4,5,6,7]
-        int index = nums.length / 2;
-        int num = nums[index];
-        TreeNode root = new TreeNode(num);
-        sortedArrayToBST(root,0,index,);
+        return sortedArrayToBST(nums, 0, nums.length-1);
+    }
 
-        return null;
+    private TreeNode sortedArrayToBST(int[] nums, int start, int end) {
+        if (start > end) return null;
+        // 使用 (start+end)/2 有溢出的风险
+        int mid = start + (end - start) / 2;
+        int num = nums[mid];
+        TreeNode root = new TreeNode(num);
+        root.left = sortedArrayToBST(nums, start, mid - 1);
+        root.right = sortedArrayToBST(nums, mid + 1, end);
+        return root;
     }
 
 }
