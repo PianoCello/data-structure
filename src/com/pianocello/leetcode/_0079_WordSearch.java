@@ -1,10 +1,5 @@
 package com.pianocello.leetcode;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
-
 /**
  * 给定一个二维网格和一个单词，找出该单词是否存在于网格中。
  * 单词必须按照字母顺序，通过相邻的单元格内的字母构成，
@@ -28,64 +23,52 @@ import java.util.Set;
 public class _0079_WordSearch {
 
     /**
-     * 解法一：BFS
+     * 解法一：DFS
      */
     public static boolean exist(char[][] board, String word) {
-        // 记录已经使用过的字符的坐标
-        Set<Integer> set = new HashSet<>();
-        Queue<Integer> queue = new LinkedList<>();
-
         int row = board.length;
         int col = board[0].length;
-        int len = word.length();
-
-        char nextChar = word.charAt(0);
-        for (int j = 0; j < row; j++) {
-            for (int k = 0; k < col; k++) {
-                // 找到第一个匹配的字符启动 BFS
-                if (board[j][k] == nextChar) {
-                    queue.offer(j * col + k);
-                    int tempLen = 0;
-                    while (!queue.isEmpty()) {
-                        // 这一轮要匹配的字符
-                        char curChar = nextChar;
-                        int size = queue.size();
-                        for (int i = 0; i < size; i++) {
-                            Integer cur = queue.remove();
-                            int x = cur / col;
-                            int y = cur % col;
-                            if (board[x][y] == curChar) {
-                                if (tempLen == len - 1) {
-                                    return true;
-                                }
-                                // 下一轮要找的字符
-                                nextChar = word.charAt(++tempLen);
-                                // 将已经使用过的坐标加入 set
-                                set.add(x * col + y);
-                                // 添加相邻坐标
-                                if (x - 1 >= 0 && !set.contains((x - 1) * col + y)) {
-                                    queue.offer((x - 1) * col + y);
-                                }
-                                if (x + 1 < row && !set.contains((x + 1) * col + y)) {
-                                    queue.offer((x + 1) * col + y);
-                                }
-                                if (y - 1 >= 0 && !set.contains(x * col + y - 1)) {
-                                    queue.offer(x * col + y - 1);
-                                }
-                                if (y + 1 < col && !set.contains(x * col + y + 1)) {
-                                    queue.offer(x * col + y + 1);
-                                }
-                            }
-                        }
-                    }
-                    // 上一轮的结果不匹配 不需要继续比较了 重置为初始条件
-                    queue.clear();
-                    set.clear();
-                    nextChar = word.charAt(0);
+        boolean[][] visited = new boolean[row][col];
+        for (int i = 0; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                boolean b = exist(board, visited, i, j, 0, word);
+                if (b) {
+                    return true;
                 }
             }
         }
         return false;
+    }
+
+    private static boolean exist(char[][] board, boolean[][] visited, int i, int j, int index, String word) {
+        if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || visited[i][j]) {
+            return false;
+        }
+        // 当前字符不匹配 回溯
+        if (board[i][j] != word.charAt(index)) {
+            return false;
+        }
+        // 已经匹配上了 返回 true
+        if (index == word.length() - 1) {
+            return true;
+        }
+        visited[i][j] = true;
+        boolean b = exist(board, visited, i - 1, j, index + 1, word);
+        if (b) {
+            return true;
+        }
+        b = exist(board, visited, i + 1, j, index + 1, word);
+        if (b) {
+            return true;
+        }
+        b = exist(board, visited, i, j - 1, index + 1, word);
+        if (b) {
+            return true;
+        }
+        b = exist(board, visited, i, j + 1, index + 1, word);
+        visited[i][j] = false;
+
+        return b;
     }
 
     public static void main(String[] args) {
@@ -95,16 +78,16 @@ public class _0079_WordSearch {
                 {'A', 'D', 'E', 'E'}
         };
 
-//        boolean b1 = exist(board, "ABCCED");
-//        boolean b2 = exist(board, "SEE");
-//        boolean b3 = exist(board, "FCEDASABCESE");
-//        boolean b4 = exist(board, "ADECCBAS");
-        boolean b5 = exist(board, "ABCESEEEFS");
-//        System.out.println(b1);
-//        System.out.println(b2);
-//        System.out.println(b3);
-//        System.out.println(b4);
-        System.out.println(b5);
+        boolean b1 = exist(board, "ABCCED");
+        boolean b2 = exist(board, "SEE");
+        boolean b3 = exist(board, "FCEDASABCESE");
+        boolean b4 = exist(board, "ADECCBAS");
+//        boolean b5 = exist(board, "ABCESEEEFS");
+        System.out.println(b1);
+        System.out.println(b2);
+        System.out.println(b3);
+        System.out.println(b4);
+//        System.out.println(b5);
     }
 
 }
