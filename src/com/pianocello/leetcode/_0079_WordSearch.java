@@ -78,15 +78,15 @@ public class _0079_WordSearch {
                 {'A', 'D', 'E', 'E'}
         };
 
-        boolean b1 = exist(board, "ABCCED");
-        boolean b2 = exist(board, "SEE");
-        boolean b3 = exist(board, "FCEDASABCESE");
-        boolean b4 = exist(board, "ADECCBAS");
+//        boolean b1 = exist(board, "ABCEED");
+//        boolean b2 = exist(board, "SEE");
+        boolean b3 = exist(board, "FDASABCESEEEE");
+//        boolean b4 = exist(board, "ADECCBAS");
 //        boolean b5 = exist(board, "ABCESEEEFS");
-        System.out.println(b1);
-        System.out.println(b2);
+//        System.out.println(b1);
+//        System.out.println(b2);
         System.out.println(b3);
-        System.out.println(b4);
+//        System.out.println(b4);
 //        System.out.println(b5);
     }
 

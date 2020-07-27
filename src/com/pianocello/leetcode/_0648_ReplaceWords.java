@@ -25,15 +25,14 @@ public class _0648_ReplaceWords {
     private class Trie {
 
         private class TrieNode {
-
             // 当前节点是否代表一个单词
-            public boolean isWord;
+            boolean isWord;
 
             // 子节点集合
-            public TrieNode[] trieNodes = new TrieNode[26];
+            TrieNode[] trieNodes = new TrieNode[26];
 
             // 判断当前节点是否存在目标子节点
-            public boolean exist(char c) {
+            boolean exist(char c) {
                 return trieNodes[c - 'a'] != null;
             }
         }
@@ -41,7 +40,7 @@ public class _0648_ReplaceWords {
         // 前缀树的根节点
         private TrieNode root = new TrieNode();
 
-        public void insert(String word) {
+        private void insert(String word) {
             TrieNode cur = root;
             for (int i = 0; i < word.length(); i++) {
                 char c = word.charAt(i);
@@ -54,7 +53,7 @@ public class _0648_ReplaceWords {
             cur.isWord = (cur != root);
         }
 
-        public String getPrefix(String word) {
+        private String getPrefix(String word) {
             TrieNode cur = root;
             for (int i = 0; i < word.length(); i++) {
                 char c = word.charAt(i);

@@ -39,18 +39,9 @@ public class _0005_LongestPalindromicSubstring {
             //计算偶数时的长度
             int evenMax = getMaxLen(chars, i, i + 1);
             int max = Math.max(oddMax, evenMax);
-
             if (max > maxLen) {
                 maxLen = max;
                 begin = i - (max-1) / 2;
-
-                /*if ((maxLen & 1) == 1) {
-                    //奇数
-                    begin = i - max / 2;
-                } else {
-                    //偶数
-                    begin = i - max / 2 + 1;
-                }*/
             }
         }
         //因为截取字符串性能消耗比较大，所以只记录起点和终点坐标，最后才截取返回值

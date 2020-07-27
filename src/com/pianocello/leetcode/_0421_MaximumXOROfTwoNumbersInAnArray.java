@@ -82,8 +82,4 @@ public class _0421_MaximumXOROfTwoNumbersInAnArray {
         return res;
     }
 
-
-    public static void main(String[] args) {
-
-    }
 }

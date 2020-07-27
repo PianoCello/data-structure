@@ -56,21 +56,6 @@ public class _0212_WordSearchII {
     }
 
     /**
-     * 查找单词是否存在于前缀树
-     */
-    private static boolean search(String word) {
-        TrieNode cur = root;
-        for (int i = 0; i < word.length(); i++) {
-            char c = word.charAt(i);
-            if (cur.nodes[c - 'a'] == null) {
-                return false;
-            }
-            cur = cur.nodes[c - 'a'];
-        }
-        return cur.isWord;
-    }
-
-    /**
      * 解法一：先对单词列表构建前缀树, 然后递归搜索二维数组的字符是否匹配
      */
     public static List<String> findWords(char[][] board, String[] words) {
