@@ -17,26 +17,9 @@ import java.util.Arrays;
 public class _0026_RemoveDuplicatesFromSortedArray {
 
     /**
-     * 解法一：自己写的
+     * 解法一：双指针
      */
     public static int removeDuplicates(int[] nums) {
-        if (nums.length <= 1) return nums.length;
-        int i = 0;
-        int j = 1;
-        while (j < nums.length) {
-            if (nums[i] == nums[j]) {
-                j++;
-            } else {
-                nums[++i] = nums[j++];
-            }
-        }
-        return i+1;
-    }
-
-    /**
-     * 解法二：LeetCode 题解
-     */
-    public static int removeDuplicates2(int[] nums) {
         if (nums.length == 0) return 0;
         int i = 0;
         for (int j = 1; j < nums.length; j++) {
@@ -51,7 +34,7 @@ public class _0026_RemoveDuplicatesFromSortedArray {
 
         int[] ints = {0,0,1,1,1,2,2,3,3,4};
 
-        int i = removeDuplicates2(ints);
+        int i = removeDuplicates(ints);
         System.out.println(i);
         System.out.println(Arrays.toString(ints));
     }
