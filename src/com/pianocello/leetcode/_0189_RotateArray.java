@@ -94,12 +94,21 @@ public class _0189_RotateArray {
     public static void rotate4(int[] nums, int k) {
         if (nums == null || nums.length == 0) return;
         int len = nums.length;
-        k %= len;
-
-
-
+        k = k % len;
+        int count = 0; // 记录交换位置的次数，n个同学一共需要换n次
+        for (int start = 0; count < len; start++) {
+            int cur = start; // 从0位置开始换位子
+            int pre = nums[cur];
+            do {
+                int next = (cur + k) % len;
+                int temp = nums[next]; // 来到角落...
+                nums[next] = pre;
+                pre = temp;
+                cur = next;
+                count++;
+            } while (start != cur);  // 循环暂停，回到起始位置，角落无人
+        }
     }
-
 
 
     public static void main(String[] args) {
