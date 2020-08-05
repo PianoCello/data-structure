@@ -13,7 +13,7 @@ import java.util.Map;
  * @author PianoCello
  * @date 2020-07-13
  */
-public class _0050_ValidSudoku {
+public class _0036_ValidSudoku {
 
     /**
      * 解法一：一次遍历，将结果存储到 HashMap 中
@@ -52,6 +52,9 @@ public class _0050_ValidSudoku {
         return true;
     }
 
+    /**
+     * 解法二：使用数组
+     */
     public boolean isValidSudoku2(char[][] board) {
         boolean[][] rows = new boolean[9][9];
         boolean[][] cols = new boolean[9][9];
