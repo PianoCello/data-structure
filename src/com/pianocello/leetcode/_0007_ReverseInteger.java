@@ -51,25 +51,19 @@ public class _0007_ReverseInteger {
     }
 
     /**
-     * 解法二：
+     * 解法二：数学方法
      */
     public static int reverse2(int x) {
-        // 123
-        // 120
         long res = 0;
-        for (; ; res = res*10+x%10, x /= 10) {
-
-            res = x % 10;
-
-
+        while (x != 0) {
+            res = res * 10 + x % 10;
+            x /= 10;
         }
-
         return res > Integer.MAX_VALUE || res < Integer.MIN_VALUE ? 0 : (int) res;
     }
 
     public static void main(String[] args) {
 
-        System.out.println(reverse(120));
-
+        System.out.println(reverse2(-123));
     }
 }
