@@ -113,7 +113,7 @@ public class _0014_LongestCommonPrefix {
     }
 
     /**
-     *
+     * 解法四：调用 api
      */
     public static String longestCommonPrefix4(String[] strs) {
         if (strs == null || strs.length == 0) return "";
@@ -127,12 +127,65 @@ public class _0014_LongestCommonPrefix {
         return result;
     }
 
+    /**
+     * 解法五：使用前缀树
+     */
+    public static String longestCommonPrefix5(String[] strs) {
+        if (strs == null || strs.length == 0) return "";
+
+        Trie trie = new Trie();
+        // 将字符串加入前缀树
+        for (String str : strs) {
+            trie.insert(str);
+        }
+
+        Trie.TrieNode cur = trie.root;
+        // 公共前缀一定存在于第一个字符串中
+        for (int i = 0; i < strs[0].length(); i++) {
+            char c = strs[0].charAt(i);
+            if (cur.triesNode[c - 'a'] != null && cur.triesNode[c - 'a'].count == strs.length) {
+                cur = cur.triesNode[c - 'a'];
+            } else {
+                return strs[0].substring(0, i);
+            }
+        }
+        return strs[0];
+    }
+
+    /**
+     * 实现前缀树
+     */
+    private static class Trie {
+        private class TrieNode {
+            // 记录字符出现的次数
+            private int count;
+            // 只包含小写字母
+            private TrieNode[] triesNode = new TrieNode[26];
+        }
+
+        // 前缀树的根节点
+        private TrieNode root = new TrieNode();
+
+        public void insert(String str) {
+            TrieNode cur = root;
+            for (int i = 0; i < str.length(); i++) {
+                char c = str.charAt(i);
+                if (cur.triesNode[c - 'a'] == null) {
+                    cur.triesNode[c - 'a'] = new TrieNode();
+                }
+                cur = cur.triesNode[c - 'a'];
+                cur.count++;
+            }
+        }
+    }
+
     public static void main(String[] args) {
 
-        String[] strings = {"flower", "flow", "flight"};
+        String[] strings = {"asdfvsd"};
+//        String[] strings = {"flaaower", "flaaow", "qflaight"};
 //        String[] strings = {"dog", "racecar", "car"};
 
-        String s = longestCommonPrefix4(strings);
+        String s = longestCommonPrefix5(strings);
 
         System.out.println(s);
     }
