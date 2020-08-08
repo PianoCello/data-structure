@@ -19,59 +19,65 @@ import java.math.BigInteger;
  */
 public class _0008_StringToInteger {
 
+    /**
+     * 解法一：按题目自左向右遍历字符串
+     */
     public static int myAtoi(String str) {
         char[] chars = str.toCharArray();
-        int i = 0;
         int len = chars.length;
-        // 找出第一个不是空格的字符
-        while (i < len) {
-            if (!Character.isSpaceChar(chars[i])) {
-                break;
-            } else {
-                i++;
-            }
+        int i = 0;
+        while (i < len && chars[i] == ' ') {
+            // 去掉前导空格
+            i++;
         }
-        // 全部都是空格
-        if (len == i) return 0;
-        BigInteger bigInt = new BigInteger("0");
-        if (chars[i] == '+' || chars[i] == '-') {
-            int j = i + 1;
-            while (j < len && Character.isDigit(chars[j])) {
-                j++;
-            }
-            if (i + 1 < len && i + 1 != j) {
-                bigInt = new BigInteger(str.substring(i, j));
-            }
-        } else if (Character.isDigit(chars[i])) {
-            int j = i + 1;
-            while (j < len && Character.isDigit(chars[j])) {
-                j++;
-            }
-            bigInt = new BigInteger(str.substring(i, j));
+        //去掉前导空格以后到了末尾了
+        if (i == len) return 0;
+        boolean negative = false;
+        if (chars[i] == '-') {
+            //遇到负号
+            negative = true;
+            i++;
+        } else if (chars[i] == '+') {
+            // 遇到正号
+            i++;
+        } else if (!Character.isDigit(chars[i])) {
+            // 其他符号
+            return 0;
         }
-
-        int res;
-        if (bigInt.compareTo(new BigInteger(String.valueOf(Integer.MAX_VALUE))) > 0) {
-            res = Integer.MAX_VALUE;
-        } else if (bigInt.compareTo(new BigInteger(String.valueOf(Integer.MIN_VALUE))) < 0) {
-            res = Integer.MIN_VALUE;
-        } else {
-            res = bigInt.intValue();
+        int ans = 0;
+        while (i < len && Character.isDigit(chars[i])) {
+            int digit = chars[i] - '0';
+            if (ans > (Integer.MAX_VALUE - digit) / 10) {
+                // 本来应该是 ans * 10 + digit > Integer.MAX_VALUE
+                // 但是 *10 和 + digit 都有可能越界，所有都移动到右边去就可以了。
+                return negative ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+            }
+            ans = ans * 10 + digit;
+            i++;
         }
-        return res;
+        return negative ? -ans : ans;
     }
+
+    /**
+     * 解法二：确定有限状态机 DFA
+     */
+    public static int myAtoi3(String str) {
+
+
+    }
+
 
     public static void main(String[] args) {
 
 //        String s = "42";
 //        String s = "   -42";
-//        String s = "45642sdsdcscd";
+//        String s = "45642sds//dcscd";
 //        String s = "+45642sdsdcscd";
 //        String s = "++++45642sdsdcscd";
 //        String s = "-456425661655656sdsdcscd";
 //        String s = "-+551";
-//        String s = "";
-        String s = "9223372036854775808";
+//        String s = "            ";
+        String s = "9223372036854775808 156ui";
         System.out.println(myAtoi(s));
     }
 }
