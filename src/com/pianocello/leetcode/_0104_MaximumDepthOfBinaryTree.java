@@ -44,21 +44,19 @@ public class _0104_MaximumDepthOfBinaryTree {
     /**
      * 解法二：自顶向下 递归
      */
-    private static int maxDepth = 0;
+    private static int depth = 0;
     public static int maxDepth2(TreeNode root) {
-        if (root == null)
-            return 0;
-        maxDepth2(root,maxDepth+1);
-        return maxDepth;
+        maxDepth2(root, depth +1);
+        return depth;
     }
 
-    private static void maxDepth2(TreeNode root, int depth) {
+    private static void maxDepth2(TreeNode root, int d) {
         if (root == null) return;
         if (root.left == null && root.right == null) {
-            maxDepth = Math.max(maxDepth, depth);
+            depth = Math.max(depth, d);
         }
-        maxDepth2(root.left, depth + 1);
-        maxDepth2(root.right, depth + 1);
+        maxDepth2(root.left, d + 1);
+        maxDepth2(root.right, d + 1);
     }
 
     public static void main(String[] args) {

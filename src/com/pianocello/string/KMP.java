@@ -21,13 +21,13 @@ public class KMP {
         // 构造 next 表
         int[] next = buildNext(pattern);
 
-        int m = str.length();
-        int n = pattern.length();
+        int sLen = str.length();
+        int pLen = pattern.length();
         // i 和 j 分别是文本串和模式串的指针
         int i = 0, j = 0;
-        while (j < n && i < m) {
+        while (i < sLen && j < pLen) {
             // 若匹配，或 pattern 已移除最左侧
-            if (0 > j || str.charAt(i) == pattern.charAt(j)) {
+            if (j < 0 || str.charAt(i) == pattern.charAt(j)) {
                 // 则转到下一字符
                 i++;
                 j++;
@@ -37,7 +37,7 @@ public class KMP {
             }
         }
         //没能成功匹配到字符串
-        if (j != n) return -1;
+        if (j != pLen) return -1;
 
         return i - j;
     }
@@ -49,14 +49,14 @@ public class KMP {
         int m = p.length();
         int[] next = new int[m];
 
-        // 模式串指针
+        // 最长公共前缀后缀长度 第0位为-1
         int t = next[0] = -1;
-        // “主”串指针
+        // 模式串指针
         int j = 0;
         while (j < m - 1) {
-            if (0 > t || p.charAt(j) == p.charAt(t)) {
-                j++;
+            if (t < 0 || p.charAt(j) == p.charAt(t)) {
                 t++;
+                j++;
                 // 此句可改进为 next[j] = (p.charAt(j) != p.charAt(t) ? t : next[t]);
                 next[j] = t;
             } else {

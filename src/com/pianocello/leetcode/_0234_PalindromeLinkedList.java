@@ -69,8 +69,6 @@ public class _0234_PalindromeLinkedList {
         return true;
     }
 
-
-
     /**
      * 解法二：递归
      * 时间复杂度：O(n)，其中 n 指的是链表的大小。

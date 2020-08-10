@@ -11,10 +11,20 @@ import java.util.Set;
  */
 public class _0141_LinkedListCycle {
 
+    private class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
+
     /**
      * 解法一：使用快慢指针
      * 时间复杂度：O(n)
-     * 空间复杂度：O(1)，我们只使用了慢指针和快指针两个结点，所以空间复杂度为 O(1)O(1)。
+     * 空间复杂度：O(1)，我们只使用了慢指针和快指针两个结点，所以空间复杂度为 O(1)。
      */
     public boolean hasCycle(ListNode head) {
         ListNode slow = head, fast = head;
@@ -29,7 +39,7 @@ public class _0141_LinkedListCycle {
     }
 
     /**
-     * 解法一：使用哈希表
+     * 解法二：使用哈希表
      *
      * 时间复杂度：O(n)，对于含有 n 个元素的链表，我们访问每个元素最多一次。
      *  -- 添加一个结点到哈希表中只需要花费 O(1) 的时间。
@@ -48,15 +58,4 @@ public class _0141_LinkedListCycle {
         }
         return false;
     }
-
-    private class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-    }
-
 }

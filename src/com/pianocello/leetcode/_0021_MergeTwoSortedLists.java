@@ -39,38 +39,29 @@ public class _0021_MergeTwoSortedLists {
     }
 
     /**
-     * 设置哨兵节点，当 left 和 right 都不是空链表时，判断 left 和 right 哪一个链表的头节点的值更小
+     * 解法一：使用哨兵节点
+     * 当 left 和 right 都不是空链表时，判断 left 和 right 哪一个链表的头节点的值更小
      * 将较小值的节点添加到结果里，当一个节点被添加到结果里之后，将对应链表中的节点向后移一位。
      *
      * 时间复杂度：O(n + m) ，其中 n 和 m 分别为两个链表的长度。
      * 空间复杂度：O(1) 。我们只需要常数的空间存放若干变量。
      */
     public static ListNode mergeTwoLists(ListNode left, ListNode right) {
-        //哨兵节点
-        ListNode merge = new ListNode(-1);
-        ListNode cur = merge;
-
-        while (true) {
-            if (right == null) {
-                cur.next = left;
-                break;
-            }
-            if (left == null) {
-                cur.next = right;
-                break;
-            }
-            ListNode temp;
-            if (left.val < right.val) {
-                temp = left;
+        ListNode dummy = new ListNode(-1);
+        ListNode prev = dummy;
+        while (left != null && right != null) {
+            if (left.val <= right.val) {
+                prev.next = left;
                 left = left.next;
             } else {
-                temp = right;
+                prev.next = right;
                 right = right.next;
             }
-            cur.next = temp;
-            cur = cur.next;
+            prev = prev.next;
         }
-        return merge.next;
+        // 合并后 left 和 right 最多只有一个还未被合并完，我们直接将链表末尾指向未合并完的链表即可
+        prev.next = left == null ? right : left;
+        return dummy.next;
     }
 
     public static void main(String[] args) {

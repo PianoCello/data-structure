@@ -12,6 +12,16 @@ import java.util.Set;
  */
 public class _0142_LinkedListCycleII {
 
+    private class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
+
     /**
      * 解法一：使用快慢指针
      * 时间复杂度：O(n)
@@ -44,7 +54,7 @@ public class _0142_LinkedListCycleII {
     }
 
     /**
-     * 解法一：使用哈希表
+     * 解法二：使用哈希表
      * 时间复杂度：O(n)
      * 空间复杂度：O(n)
      */
@@ -61,15 +71,4 @@ public class _0142_LinkedListCycleII {
         }
         return null;
     }
-
-    private class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-    }
-
 }

@@ -1,8 +1,5 @@
 package com.pianocello.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 给定一个二叉树，判断其是否是一个有效的二叉搜索树。
  * 假设一个二叉搜索树具有如下特征：
@@ -34,33 +31,10 @@ public class _0098_ValidateBinarySearchTree {
     }
 
     /**
-     * 解法一：中序遍历 再检查结果
+     * 解法一：中序遍历 直接检查结果
+     * pre 不使用 int 类型是因为 int 无法判断第一个节点
      */
-    public static boolean isValidBST(TreeNode root) {
-        if (root == null) {
-            return true;
-        }
-        List<Integer> list = inorder(root, new ArrayList<>());
-        for (int i = 0; i < list.size() - 1; i++) {
-            if (list.get(i) >= list.get(i + 1)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private static List<Integer> inorder(TreeNode root, ArrayList<Integer> treeNodes) {
-        if (root == null) return treeNodes;
-        inorder(root.left,treeNodes);
-        treeNodes.add(root.val);
-        inorder(root.right,treeNodes);
-        return treeNodes;
-    }
-
-    /**
-     * 解法二：中序遍历 直接检查结果
-     */
-    static long pre = Long.MIN_VALUE;
+    private static long pre = Long.MIN_VALUE;
     public static boolean isValidBST2(TreeNode root) {
         if (root == null) {
             return true;
@@ -70,16 +44,17 @@ public class _0098_ValidateBinarySearchTree {
             return false;
         }
         // 访问当前节点：如果当前节点小于等于中序遍历的前一个节点，说明不满足BST，返回 false；否则继续遍历。
-        if (root.val <= pre) {
+        if (pre >= root.val) {
             return false;
         }
+        // 更新前驱节点的值
         pre = root.val;
         // 访问右子树
         return isValidBST2(root.right);
     }
 
     /**
-     * 解法三：递归
+     * 解法二：递归
      */
     public static boolean isValidBST3(TreeNode root) {
         return helper(root,null,null);

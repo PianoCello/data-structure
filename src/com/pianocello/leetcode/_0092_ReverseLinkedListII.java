@@ -41,7 +41,7 @@ public class _0092_ReverseLinkedListII {
         dmy.next = head;
         int delta = n - m;
         ListNode pre = dmy, tail = head;
-        //先定位出m节点和m之前的节点
+        //先定位出m节点和n之前的节点
         while (m > 1) {
             pre = tail;
             tail = tail.next;
