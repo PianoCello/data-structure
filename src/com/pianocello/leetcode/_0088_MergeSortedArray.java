@@ -17,7 +17,7 @@ import java.util.Arrays;
  * 输出: [1,2,2,3,5,6]
  *
  * @author PianoCello
- * @date 2020-07-24
+ * @date 2020-08-11
  */
 public class _0088_MergeSortedArray {
 
