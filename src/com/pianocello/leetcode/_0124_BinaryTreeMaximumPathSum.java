@@ -87,8 +87,8 @@ public class _0124_BinaryTreeMaximumPathSum {
         TreeNode node = new TreeNode(-10);
         TreeNode node2 = new TreeNode(9);
         TreeNode node3 = new TreeNode(20);
-        TreeNode node4 = new TreeNode(15);
-        TreeNode node5 = new TreeNode(7);
+        TreeNode node4 = new TreeNode(-15);
+        TreeNode node5 = new TreeNode(-7);
         node5.left =
 
         node.left = node2;
@@ -98,13 +98,14 @@ public class _0124_BinaryTreeMaximumPathSum {
         node5.left = new TreeNode(1);
         int sum = maxPathSum(node);
 
-        TreeNode treeNode = new TreeNode(-10);
+        TreeNode treeNode = new TreeNode(20);
         TreeNode treeNod2 = new TreeNode(-9);
-        TreeNode treeNod3 = new TreeNode(20);
+        TreeNode treeNod3 = new TreeNode(1);
         treeNode.left = treeNod2;
         treeNode.right = treeNod3;
 //        int sum2 = maxPathSum(treeNode);
 
         System.out.println(sum);
+//        System.out.println(sum2);
     }
 }
