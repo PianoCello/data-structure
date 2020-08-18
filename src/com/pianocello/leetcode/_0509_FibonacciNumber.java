@@ -47,12 +47,12 @@ public class _0509_FibonacciNumber {
     }
 
     private static int fib2(int[] mem, int n) {
-        if (n == 0) {
-            return 0;
+        if (mem[n] != 0) {
+            return mem[n];
         } else if (n == 1) {
             return 1;
-        }else if (mem[n] != 0) {
-            return mem[n];
+        } else if (n == 0) {
+            return 0;
         }
         mem[n] = fib2(mem, n - 1) + fib2(mem, n - 2);
         return mem[n];
