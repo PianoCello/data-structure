@@ -32,8 +32,8 @@ public class _0046_Permutations {
      * 2. 选择列表
      * 3. 终止条件
      */
-    private final List<List<Integer>> res = new LinkedList<>();
-    public List<List<Integer>> permute(int[] nums) {
+    private static final List<List<Integer>> res = new LinkedList<>();
+    public static List<List<Integer>> permute(int[] nums) {
         // 记录路径
         LinkedList<Integer> track = new LinkedList<>();
         boolean[] used = new boolean[nums.length];
@@ -41,7 +41,7 @@ public class _0046_Permutations {
         return res;
     }
 
-    private void backTrack(int[] nums, boolean[] used, LinkedList<Integer> track) {
+    private static void backTrack(int[] nums, boolean[] used, LinkedList<Integer> track) {
         // 结束条件 已经没有选择列表了
         if (nums.length == track.size()) {
             res.add(new LinkedList<>(track));
@@ -67,8 +67,8 @@ public class _0046_Permutations {
     /**
      * 解法二：LeetCode 题解
      */
-    private final List<List<Integer>> ans = new LinkedList<>();
-    public List<List<Integer>> permute2(int[] nums) {
+    private static final List<List<Integer>> ans = new LinkedList<>();
+    public static List<List<Integer>> permute2(int[] nums) {
         // 当前排列为 output
         List<Integer> output = new ArrayList<>();
         for (int num : nums) {
@@ -78,7 +78,7 @@ public class _0046_Permutations {
         return ans;
     }
 
-    private void backTrack(int n, List<Integer> output, int first) {
+    private static void backTrack(int n, List<Integer> output, int first) {
         // 所有数都填完了
         if (first == n) {
             ans.add(new ArrayList<>(output));
@@ -94,4 +94,10 @@ public class _0046_Permutations {
         }
     }
 
+    public static void main(String[] args) {
+
+        int[] nums = {1, 2, 3};
+        List<List<Integer>> permute = permute2(nums);
+
+    }
 }
