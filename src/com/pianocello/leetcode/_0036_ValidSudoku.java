@@ -77,4 +77,51 @@ public class _0036_ValidSudoku {
         return true;
     }
 
+    /**
+     * 解法三：回溯法
+     */
+    public boolean isValidSudoku3(char[][] board) {
+        return backTrack(board,0,0);
+    }
+
+    private boolean backTrack(char[][] board, int row, int col) {
+        // 进入下一行条件
+        if (col == 9) {
+            return backTrack(board, row + 1, 0);
+        }
+        // 终结条件
+        if (row == 9) {
+            return true;
+        }
+        // 判断当前数字是否有效
+        if (board[row][col] != '.') {
+            if (!isValid(board, row, col)) {
+                return false;
+            }
+        }
+        return backTrack(board, row, col + 1);
+    }
+
+    private boolean isValid(char[][] board, int row, int col) {
+        // 取出当前位置的数字
+        char cur = board[row][col];
+        for (int k = 0; k < 9; k++) {
+            // 同一行九个位置已出现 cur
+            if (board[row][k] == cur && k != col) {
+                return false;
+            }
+            // 同一列九个位置中已出现 cur
+            if (board[k][col] == cur && k != row) {
+                return false;
+            }
+            // 同一个子数独九个位置中已出现 cur
+            int r = (row / 3) * 3 + k / 3;
+            int c = (col / 3) * 3 + k % 3;
+            if (board[r][c] == cur && r != row && c != col) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
