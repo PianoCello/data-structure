@@ -1,8 +1,5 @@
 package com.pianocello.leetcode;
 
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * 编写一个程序，通过已填充的空格来解决数独问题。
  * 一个数独的解法需遵循如下规则：
@@ -20,84 +17,93 @@ public class _0037_SudokuSolver {
     /**
      * 解法一：回溯法
      */
-    public void solveSudoku(char[][] board) {
-        backTrack(board, 0, 0);
+    public static void solveSudoku(char[][] board) {
+        backtrack(board, 0, 0);
     }
 
-    private boolean backTrack(char[][] board, int row, int col) {
+    private static boolean backtrack(char[][] board, int row, int col) {
+        // 进入下一行
+        if (col == 9) {
+            return backtrack(board, row + 1, 0);
+        }
         // 结束条件
         if (row == 9) {
             return true;
         }
-        if (col == 9) {
-            backTrack(board, row + 1, 0);
-        }
+        // 进入下一列
         if (board[row][col] != '.') {
-            return backTrack(board, row, col + 1);
+            return backtrack(board, row, col + 1);
         }
-        // 找出可选列表 (不在行 列 宫格内的数字)
-        Set<Character> selectable = findSelectable(board, row, col);
-        if (selectable.isEmpty()) {
-            return false;
-        }
-        Character[] characters = selectable.toArray(new Character[0]);
-        int size = characters.length;
-        for (int i = 0; i < size; i++) {
-            board[row][col] = characters[i];
-            boolean flag = backTrack(board, row, col + 1);
-            if (!flag) {
-                board[row][col] = '.';
+        // 选择列表为 '1' - '9'
+        for (char ch = '1'; ch <= '9'; ch++) {
+            // 跳过冲突的数字
+            if (!isValid(board, row, col, ch)) {
+                continue;
             }
+            // 做出选择
+            board[row][col] = ch;
+            // 如果找到一个可行解，立即结束
+            if (backtrack(board, row, col + 1)) {
+                return true;
+            }
+            // 撤销选择
+            board[row][col] = '.';
         }
+        return false;
+    }
 
+    /**
+     * 判断 ch 这个数字能否放在当前位置
+     */
+    private static boolean isValid(char[][] board, int row, int col, char ch) {
+        for (int i = 0; i < 9; i++) {
+            if (board[row][i] == ch) return false;
+            if (board[i][col] == ch) return false;
+            if (board[(row / 3) * 3 + i / 3][(col / 3) * 3 + i % 3] == ch)
+                return false;
+        }
         return true;
     }
 
-    private Set<Character> findSelectable(char[][] board, int row, int col) {
-        Set<Character> set = new HashSet<>();
-        for (char i = '1'; i <= '9'; i++) {
-            set.add(i);
-        }
-        Set<Character> exist = new HashSet<>();
-        for (int k = 0; k < 9; k++) {
-            char rowNum = board[row][k];
-            char colNum = board[k][col];
-            int r = (row / 3) * 3 + k / 3;
-            int c = (col / 3) * 3 + k % 3;
-            char suduNum = board[r][c];
-            if (rowNum != '.') {
-                exist.add(rowNum);
-            }
-            if (colNum != '.') {
-                exist.add(colNum);
-            }
-            if (suduNum != '.') {
-                exist.add(suduNum);
-            }
-        }
-        set.removeAll(exist);
-        return set;
-    }
+    public static void main(String[] args) {
+        
+        char[][] board = {
+                {'5','3','.','.','7','.','.','.','.'},
+                {'6','.','.','1','9','5','.','.','.'},
+                {'.','9','8','.','.','.','.','6','.'},
+                {'8','.','.','.','6','.','.','.','3'},
+                {'4','.','.','8','.','3','.','.','1'},
+                {'7','.','.','.','2','.','.','.','6'},
+                {'.','6','.','.','.','.','2','8','.'},
+                {'.','.','.','4','1','9','.','.','5'},
+                {'.','.','.','.','8','.','.','7','9'}
+        };
 
-    private boolean isValid(char[][] board, int row, int col) {
-        // 取出当前位置的数字
-        char cur = board[row][col];
-        for (int k = 0; k < 9; k++) {
-            // 同一行九个位置已出现 cur
-            if (board[row][k] == cur && k != col) {
-                return false;
-            }
-            // 同一列九个位置中已出现 cur
-            if (board[k][col] == cur && k != row) {
-                return false;
-            }
-            // 同一个子数独九个位置中已出现 cur
-            int r = (row / 3) * 3 + k / 3;
-            int c = (col / 3) * 3 + k % 3;
-            if (board[r][c] == cur && r != row && c != col) {
-                return false;
-            }
-        }
-        return true;
+
+        /*
+        ["5","3","4","6","7","8","9","2","2"],
+        ["6","7","2","1","9","5","8","4","8"],
+        ["1","9","8","3","4","2","7","6","7"],
+        ["8","5","9","7","6","4","4","2","3"],
+        ["4","2","6","8","5","3","7","9","1"],
+        ["7","1","3","9","2","4","8","5","6"],
+        ["9","6","7","5","3","7","2","8","4"],
+        ["3","8","7","4","1","9","6","3","5"],
+        ["3","4","5","2","8","6","1","7","9"]
+        */
+        /*
+        ["5","3","4","6","7","8","9","1","2"],
+        ["6","7","2","1","9","5","3","4","8"],
+        ["1","9","8","3","4","2","5","6","7"],
+        ["8","5","9","7","6","1","4","2","3"],
+        ["4","2","6","8","5","3","7","9","1"],
+        ["7","1","3","9","2","4","8","5","6"],
+        ["9","6","1","5","3","7","2","8","4"],
+        ["2","8","7","4","1","9","6","3","5"],
+        ["3","4","5","2","8","6","1","7","9"]
+        */
+
+        solveSudoku(board);
     }
+    
 }
