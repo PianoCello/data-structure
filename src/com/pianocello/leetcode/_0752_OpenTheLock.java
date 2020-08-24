@@ -23,44 +23,8 @@ import java.util.*;
  */
 public class _0752_OpenTheLock {
 
-    public static int openLock2(String[] deadends, String target) {
-        Set<String> dead = new HashSet<>(Arrays.asList(deadends));
-
-        Queue<String> queue = new LinkedList<>();
-        queue.offer("0000");
-        queue.offer(null);
-
-        Set<String> visited = new HashSet<>();
-        visited.add("0000");
-
-        int step = 0;
-        while (!queue.isEmpty()) {
-            String node = queue.poll();
-            //node = null 说明这一层遍历完了
-            if (node == null) {
-                step++;
-                if (queue.peek() != null)
-                    queue.offer(null);
-            } else if (node.equals(target)) {
-                return step;
-            } else if (!dead.contains(node)) {
-                for (int i = 0; i < 4; ++i) {
-                    for (int d = -1; d <= 1; d += 2) {
-                        int y = ((node.charAt(i) - '0') + d + 10) % 10;
-                        String nei = node.substring(0, i) + ("" + y) + node.substring(i + 1);
-                        if (!visited.contains(nei)) {
-                            visited.add(nei);
-                            queue.offer(nei);
-                        }
-                    }
-                }
-            }
-        }
-        return -1;
-    }
-
     /**
-     * BFS 实现
+     * 解法一：BFS 实现
      */
     public static int openLock(String[] deadends, String target) {
         //步数即是最短路径
@@ -129,13 +93,71 @@ public class _0752_OpenTheLock {
         return new String(chars);
     }
 
+    /**
+     * 解法二：双向 BFS 实现
+     * 注意：双向 BFS 必须知道终点在哪里
+     */
+    public static int openLock2(String[] deadends, String target) {
+
+        Set<String> deads = new HashSet<>(Arrays.asList(deadends));
+        // 用集合不用队列，可以快速判断元素是否存在
+        Set<String> q1 = new HashSet<>();
+        Set<String> q2 = new HashSet<>();
+        Set<String> visited = new HashSet<>();
+
+        int step = 0;
+        q1.add("0000");
+        q2.add(target);
+
+        while (!q1.isEmpty() && !q2.isEmpty()) {
+            // 哈希集合在遍历的过程中不能修改，用 temp 存储扩散结果
+            Set<String> temp;
+            // 每次都选择一个较小的集合进行扩散，那么占用的空间增长速度就会慢一些
+            if (q1.size() > q2.size()) {
+                temp = q1;
+                q1 = q2;
+                q2 = temp;
+            }
+            temp = new HashSet<>();
+
+            // 将 q1 中的所有节点向周围扩散
+            for (String cur : q1) {
+                // 判断是否到达终点
+                if (deads.contains(cur))
+                    continue;
+                if (q2.contains(cur))
+                    return step;
+                visited.add(cur);
+
+                // 将一个节点的未遍历相邻节点加入集合
+                for (int j = 0; j < 4; j++) {
+                    String up = plusOne(cur, j);
+                    if (!visited.contains(up))
+                        temp.add(up);
+                    String down = minusOne(cur, j);
+                    if (!visited.contains(down))
+                        temp.add(down);
+                }
+            }
+            // 在这里增加步数
+            step++;
+            // temp 相当于 q1
+            // 这里交换 q1 q2，下一轮 while 就是扩散 q2
+            q1 = q2;
+            q2 = temp;
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
 
         String[] deadends = {"0201", "0101", "0102", "1212", "2002"};
         String target = "0202";
         int i = openLock(deadends, target);
+        int i2 = openLock2(deadends, target);
 
         System.out.println(i);
+        System.out.println(i2);
     }
 
 }
