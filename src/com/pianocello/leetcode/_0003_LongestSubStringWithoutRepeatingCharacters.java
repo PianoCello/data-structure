@@ -7,7 +7,7 @@ import java.util.Set;
  * 无重复字符的最长子串:
  * 给定一个字符串，请你找出其中不含有重复字符的最长子串的长度。
  * <p>
- * 示例 1:
+ * 示例 1:
  * 输入: "abcabcbb"
  * 输出: 3
  * 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
@@ -66,10 +66,39 @@ public class _0003_LongestSubStringWithoutRepeatingCharacters {
         return res;
     }
 
+    /**
+     * 解法三： 滑动窗口 自己实现的
+     *
+     */
+    public static int lengthOfLongestSubstring3(String source) {
+        char[] chars = source.toCharArray();
+        // 窗口的左右指针
+        int left = 0, right = 0;
+        int res = 0;
+        // 窗口
+        int[] window = new int[127];
+        while (right < chars.length) {
+            char c = chars[right];
+            right++;
+            window[c]++;
+            // 判断左侧窗口是否要收缩
+            while (window[c] > 1) {
+                char d = chars[left];
+                left++;
+                window[d]--;
+            }
+            // 更新结果
+            res = Math.max(res, right - left);
+        }
+        return res;
+    }
+
     public static void main(String[] args) {
-        String s = "abcabcbb";
+        String s = "aassddfccc";
         int length = lengthOfLongestSubstring2(s);
         System.out.println(length);
+        int length2 = lengthOfLongestSubstring3(s);
+        System.out.println(length2);
     }
 
 }
