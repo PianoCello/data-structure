@@ -21,10 +21,16 @@ package com.pianocello.leetcode;
  */
 public class _0461_HammingDistance {
 
+    /**
+     * 解法一：异或 再求 汉明权重
+     */
     public int hammingDistance(int x, int y) {
+        x = x ^ y;
         int res = 0;
-
-
+        while (x != 0) {
+            ++res;
+            x = x & (x - 1);
+        }
         return res;
     }
 
