@@ -3,7 +3,7 @@ package com.pianocello.leetcode;
 import java.util.*;
 
 /**
- * 给定一个二叉树，返回它的 后序 遍历。
+ * 给定一个二叉树，返回它的 后序 遍历。
  *
  * 示例:
  *

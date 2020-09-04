@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 给定一个二叉树，返回它的 前序 遍历。
+ * 给定一个二叉树，返回它的 前序 遍历。
  *
  * 示例:
  * 输入: [1,null,2,3]

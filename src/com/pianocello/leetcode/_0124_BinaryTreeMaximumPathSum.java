@@ -13,14 +13,14 @@ package com.pianocello.leetcode;
  *      2   3
  * 输出: 6
  *
- * 示例 2:
+ * 示例 2:
  * 输入: [-10,9,20,null,null,15,7]
  *
- *    -10
- *    / \
- *   9  20
- *     /  \
- *    15   7
+ *    -10
+ *    / \
+ *   9  20
+ *     /  \
+ *    15   7
  * 输出: 42
  *
  * @author PianoCello

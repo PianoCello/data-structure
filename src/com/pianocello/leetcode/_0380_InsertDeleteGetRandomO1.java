@@ -3,7 +3,7 @@ package com.pianocello.leetcode;
 import java.util.*;
 
 /**
- * 设计一个支持在平均 时间复杂度 O(1) 下，执行以下操作的数据结构。
+ * 设计一个支持在平均 时间复杂度 O(1) 下，执行以下操作的数据结构。
  * <p>
  * insert(val)：当元素 val 不存在时，向集合中插入该项。
  * remove(val)：元素 val 存在时，从集合中移除该项。
