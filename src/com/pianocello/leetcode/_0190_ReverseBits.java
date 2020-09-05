@@ -15,15 +15,23 @@ package com.pianocello.leetcode;
  */
 public class _0190_ReverseBits {
 
-    public int reverseBits(int n) {
+    /**
+     * 解法一：取出每一位再异或
+     *
+     */
+    public static int reverseBits(int n) {
         int res = 0;
-
         for (int i = 0; i < 32; i++) {
-            
+            int bit = n & 1;
+            n = n >> 1;
+            res = (res << 1) ^ bit;
         }
-
-
         return res;
+    }
+
+    public static void main(String[] args) {
+        int i = reverseBits(15);
+        System.out.println(i);
     }
 
 }
