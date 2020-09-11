@@ -46,9 +46,9 @@ public class _0384_ShuffleAnArray {
          */
         public int[] shuffle() {
             int[] copy = Arrays.copyOf(nums, nums.length);
+            Random random = new Random();
             for (int i = 1; i < copy.length; ++i) {
-                Random random = new Random(42);
-                int pre = random.nextInt(i + 1);
+                int pre = random.nextInt() % (i + 1);
                 if (i != pre) {
                     int temp = copy[i];
                     copy[i] = copy[pre];
