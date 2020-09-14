@@ -18,6 +18,22 @@ package com.pianocello.leetcode;
  * @date 2020-09-13
  */
 public class _0198_HouseRobber {
-    
+
+    /**
+     * 解法一：动态规划
+     *
+     */
+    public int rob(int[] nums) {
+        int n = nums.length;
+        if (n <= 1) return n == 0 ? 0 : nums[0];
+        // memo[i] 表示考虑抢劫 nums[i...n-1] 所能获得最大收益
+        int[] mem = new int[n];
+        mem[0] = nums[0];
+        mem[1] = Math.max(nums[0], nums[1]);
+        for (int i = 2; i < n; i++) {
+            mem[i] = Math.max(mem[i - 1], mem[i - 2] + nums[i]);
+        }
+        return mem[n - 1];
+    }
 
 }
