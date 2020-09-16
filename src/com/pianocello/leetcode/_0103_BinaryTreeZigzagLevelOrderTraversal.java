@@ -1,6 +1,8 @@
 package com.pianocello.leetcode;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -36,14 +38,44 @@ public class _0103_BinaryTreeZigzagLevelOrderTraversal {
         }
     }
 
-
     /**
-     * 解法一：
+     * 解法一：广度优先搜索 + 双端队列
      */
     public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
-        List<List<Integer>> lists = new ArrayList<>();
-
-        return lists;
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null) return res;
+        Deque<TreeNode> deque = new LinkedList<>();
+        deque.add(root);
+        // 判断正向还是反向
+        int flag = 0;
+        while (!deque.isEmpty()) {
+            List<Integer> list = new ArrayList<>();
+            int size = deque.size();
+            for (int i = 0; i < size; i++) {
+                if (flag == 0) {
+                    TreeNode node = deque.removeFirst();
+                    list.add(node.val);
+                    if (node.left != null) {
+                        deque.addLast(node.left);
+                    }
+                    if (node.right != null) {
+                        deque.addLast(node.right);
+                    }
+                } else {
+                    TreeNode node = deque.removeLast();
+                    list.add(node.val);
+                    if (node.right != null) {
+                        deque.addFirst(node.right);
+                    }
+                    if (node.left != null) {
+                        deque.addFirst(node.left);
+                    }
+                }
+            }
+            res.add(list);
+            flag ^= 1;
+        }
+        return res;
     }
 
 }
