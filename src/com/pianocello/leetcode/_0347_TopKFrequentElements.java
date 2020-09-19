@@ -27,7 +27,7 @@ public class _0347_TopKFrequentElements {
         // key 为元素   val 为频次
         Map<Integer, Integer> map = new HashMap<>();
         for (int num : nums) {
-            map.merge(num, 1, (a, b) -> a + b);
+            map.merge(num, 1, Integer::sum);
         }
         //使用优先级队列 并且及时删除优先级最高的
         PriorityQueue<Integer> priority = new PriorityQueue<>((n1, n2) -> map.get(n1) - map.get(n2));
