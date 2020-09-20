@@ -40,22 +40,28 @@ public class _0337_HouseRobberIII {
      *
      */
     public int rob(TreeNode root) {
-        int[] rootStatus = dfs(root);
-        return Math.max(rootStatus[0], rootStatus[1]);
+        int[] res = help(root);
+        return Math.max(res[0], res[1]);
     }
 
     /**
+     * int[2]
      * 第一个元素为当前结点被选中时的最大权值
      * 第二个元素为当前结点不被选中时的最大权值
      */
-    public int[] dfs(TreeNode node) {
-        if (node == null) {
-            return new int[]{0, 0};
-        }
-        int[] l = dfs(node.left);
-        int[] r = dfs(node.right);
-        int selected = node.val + l[1] + r[1];
-        int notSelected = Math.max(l[0], l[1]) + Math.max(r[0], r[1]);
-        return new int[]{selected, notSelected};
+    private int[] help(TreeNode root) {
+        // 结束条件
+        if (root == null)
+            return new int[2];
+        // 递归遍历左子树
+        int[] left = help(root.left);
+        // 递归遍历右子树
+        int[] right = help(root.right);
+        // 被选中时, 权值=当前结点值+左右节点不被选中的权值
+        int selected = root.val + left[1] + right[1];
+        // 不被选中时, 权值=左节点[被或不被]选中的最大值 + 右节点[被或不被]选中的最大值
+        int unSelected = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        return new int[]{selected, unSelected};
     }
+
 }
